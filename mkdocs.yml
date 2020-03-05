@@ -70,3 +70,5 @@ markdown_extensions:
 
 nav:
   - Welcome: index.md
+  - Assignment 1:
+    - Instruction: assignment1/readme.md

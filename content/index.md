@@ -3,7 +3,7 @@
 
 Welcome!
 
-This course is an introductory course to database systems. In this course, you will be touching both the theoritical fundations behind the database system (i.e. relational algebra and CNF forms) and the practical end of using an actual database management system with the help of a series of carefully designed assignments.
+This course is an introductory course to database systems. In this course, you will be touching both the theoritical fundations behind the database system (i.e. relational algebra and CNF) and the practical end of using an actual database management system with the help of a series of carefully designed assignments.
 
 ## Logistics
 
