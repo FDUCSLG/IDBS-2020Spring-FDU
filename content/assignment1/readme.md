@@ -21,11 +21,15 @@ Actually, MacOS and Windows should actually work, because the primary softwares 
 
 If you think that I am going to teach you how to install them step by step, then you are too naive!
 
-Try to use google to search "install A on B", substitute A with "MySQL" or "golang" and B with the name of your operating system, such as ["install MySQL on Archilinux"](https://lmgtfy.com/?q=install+MySQL+on+Archilinux)[^2].
+Try to use google to search "install A on B", substitute A with "MySQL" or "golang" and B with the name of your operating system, such as ["install MySQL on Archilinux"](https://lmgtfy.com/?q=install+MySQL+on+Archilinux)[^2]. Note that we will be using MySQL version 8.0, so be careful not to install MySQL 5.7.
 
 Although I am not telling you the steps, there are some common pitfalls that you should be aware of:
 
 * Do not leave the password blank when you are installing MySQL, give it a password for the root user, and memorize it. Later you will use this password as the root user to access the database.
+
+Well, if you are just too lazy, or can not find some good tutorial to teach you how to install them, here is the generous gift from your TA:
+
+* 
 
 [^1]: https://db-engines.com/en/ranking
 [^2]: If you do not have access to Google, you should work out a way to get access to it, [here](https://www.uedbox.com/post/54776/) is a website that lists some mirror sites of Google that might be used in mainland China. If you failed to access Google after many attempts, then by all means try to use the international version of [bing](https://bing.com).
