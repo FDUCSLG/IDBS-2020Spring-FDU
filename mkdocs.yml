@@ -1,0 +1,72 @@
+# Project information
+site_name: 'IDBS-Spring20-Fudan'
+site_description: 'Course website for introduction to database systems at Fudan University'
+site_author: 'Zhifeng Hu'
+site_url: 'https://zfhu.ac.cn/IDBS-Spring20-Fudan'
+site_dir: 'docs'
+docs_dir: 'content'
+edit_uri: 'edit/master/content'
+
+# Repository
+repo_name: 'ichn-hu/IDBS-Spring20-Fudan'
+repo_url: 'https://github.com/ichn-hu/IDBS-Spring20-Fudan'
+
+# Copyright
+copyright: 'Built by <a href="http://github.com/ichn-hu">ichn-hu</a> &copy; 2020'
+
+# Configuration
+theme:
+  name: 'material'
+  language: 'en'
+  custom_dir: 'custom/'
+  favicon: '/static/assets/fudan.svg'
+  palette:
+    primary: 'Black'
+    accent: 'Blue'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+  logo:
+    icon: 'code'
+  feature:
+    tabs: true
+
+# # Customization
+extra:
+  social:
+    - type: 'github'
+      link: 'https://github.com/ichn-hu'
+    - type: 'quote-left'
+      link: 'https://github.com/ichn-hu/IDBS-Spring20-Fudan'
+
+extra_css:
+  - 'static/css/katex.css'
+  - 'https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css'
+
+extra_javascript:
+  - 'static/js/katex.js'
+  - 'https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js'
+  - 'https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js'
+
+# Google Analytics
+google_analytics:
+  - 'UA-149024530-1'
+  - 'auto'
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - footnotes
+  - codehilite:
+      linenums: true
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+
+nav:
+  - Welcome: index.md
