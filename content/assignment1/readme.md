@@ -28,7 +28,7 @@ Then `git clone` your forked project in your local environment. You need to [set
 git clone https://github.com/your-github-id/IDBS-Spring20-Fudan.git
 ```
 
-Once you've cloned the project in your local environment, get to `IDBS-Spring20-Fudan/assignments/submission` and create a directory and name it by your student id, for example `IDBS-Spring20-Fudan/assignments/submission/16307130177`, and this directory will be your working directory. **You are ONLY allowed to modify files under this directory, any other modifications outside this directory will make your submission invalid.**
+Once you've cloned the project in your local environment, get to `IDBS-Spring20-Fudan/assignments/ass1/submission` and create a directory and name it by your student id, for example `IDBS-Spring20-Fudan/assignments/ass1/submission/16307130177`, and this directory will be your working directory. **You are ONLY allowed to modify files under this directory, any other modifications outside this directory will make your submission invalid.**
 
 ## Table Creation
 
