@@ -24,7 +24,7 @@ Then [fork this project](https://github.com/ichn-hu/IDBS-Spring20-Fudan) on GitH
 
 Then `git clone` your forked project in your local environment. You need to [setup your GitHub account on your local machine] for `git` if you have not yet done so.
 
-
+Once you've cloned the project in your local environment, get to `IDBS-Spring20-Fudan/assignments/submission` and create a directory and name it by your student id, for example `IDBS-Spring20-Fudan/assignments/submission/16307130177`, and this directory will be your working directory. You are ONLY allowed to modify files under this directory, any other modifications outside this directory will make your submission invalid.
 
 ## Table Creation
 
@@ -74,12 +74,18 @@ Make sure you have files
 * `create_table.sql`
 * `1.sql`, ..., `8.sql`
 
-in your working directory, then use `tar -czf student_id.tar *.sql` to make a package of all your SQL files for the submission, substitute `student_id` with your student ID, for example `tar -czf 16307130177.tar *.sql`.
+in your working directory.
 
-You are supposed to submit the `.tar` file using GitHub.
+Then use the following command to submit these files (run it at your working directory).
 
-**Note**: the submitted `.tar` file will be rated using a script automat
+```
+git add .
+git commit -m "submission of xxx for ass1"
+git push
+```
 
+And then get to your GitHub page and create a pull request. The time you create the pull request will be considered as the submission time.
 
-[^1]: https://db-engines.com/en/ranking
-[^2]: If you do not have access to Google, you should work out a way to get access to it, [here](https://www.uedbox.com/post/54776/) is a website that lists some mirror sites of Google that might be used in mainland China. If you failed to access Google after many attempts, then by all means try to use the international version of [bing](https://bing.com).
+**Note**: the submitted files will be evaluated using a automatic script written in golang, the script will later be uploaded, so make sure you follow all these instructions to make the file hiearchy correct, otherwise the script won't work and you will lose the mark.
+
+Should you have any question, try to search it using Google first. If want clarification of the assignment, then please create an issue in the project repository.
