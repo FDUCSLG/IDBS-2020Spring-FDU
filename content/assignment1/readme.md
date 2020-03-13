@@ -4,7 +4,7 @@ This is the first assignment of the course, it asks you to write SQL to create t
 
 Basically you need to use
 
-* ceate
+* create
 * select
 * where
 * join
