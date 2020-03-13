@@ -23,3 +23,4 @@ create table record
     foreign key(employee_id) references employee(id) on delete cascade
 );
 
+create table l();
