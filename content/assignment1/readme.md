@@ -89,3 +89,10 @@ And then get to your GitHub page and create a pull request. The time you create 
 **Note**: the submitted files will be evaluated using a automatic script written in golang, the script will later be uploaded, so make sure you follow all these instructions to make the file hiearchy correct, otherwise the script won't work and you will lose the mark.
 
 Should you have any question, try to search it using Google first. If want clarification of the assignment, then please create an issue in the project repository.
+
+## References
+
+There are many tutorials online about how to write SQL, you might find the following helpful
+
+* [MySQL Tutorial](https://www.mysqltutorial.org/)
+* [MySQL Tutorial](https://www.tutorialspoint.com/mysql/index.htm)
