@@ -22,5 +22,3 @@ create table record
     foreign key(book_id) references book(id) on delete cascade,
     foreign key(employee_id) references employee(id) on delete cascade
 );
-
-create table l();
