@@ -1,35 +1,85 @@
-# Assignment 1, Environment Setup
+# Assignment 1, Basic SQL
 
-This is the first assignment of the course, and it will guide you to setup an environment to be able to play with the actual database system.
+This is the first assignment of the course, it asks you to write SQL to create tables and query from them.
 
-The primary database we will be using in this class is MySQL. MySQL is an [open source](https://github.com/mysql/mysql-server) relational database management system created by Oracle, and it is among the topest in the database market[^1] and widely adopted by a lot of companies.
+Basically you need to use
 
-The programming language we will be using in the series of assignments is golang, for its simplicity and the easy-to-use concurrency mechanism. Golang, developed by Google, is a statically typed programming langauge (we'll refer to golang as Go in the following content). It is becomming more and more popular in the recent several years, companies like Bilibili and Zhihu and so many more are using Go to build the backend of their applications, so it is very desirable and meaningful to start to learn this language.
+* ceate
+* select
+* where
+* join
+* group by
+* order by
+* having
 
-The goal of this assignment is to help you install MySQL on your development environment, and teaches you the basic usage of how to interact with MySQL using command line and programs. In this assignment, you are not required to actually write Go, but you should install the compiler and compile a Go program to interact with the database.
+to be able to finish the assginment.
 
-## Environment Reqirements
+## Working Directory Setup
 
-The operating system is required to be Linux, ideally ubuntu, debian or archlinux, but most of the linux distributions should be fine. We do not have any support for other operating systems like Windows or MacOS, so if you are using any of them there are some suggestions for you:
+This is the first step of the assignment, you need to get yourself familiar with `git` and GitHub.
 
-* Install a virtual machine or dual-boot Linux (mostly recommended)
-* Buy a VPS with Linux operating system, and use ssh to access it through out all the assignments
+First of all, create a GitHub id if you do not yet have one.
 
-Actually, MacOS and Windows should actually work, because the primary softwares we will be using, MySQl and Go, are all cross platform. However, MySQL as a software that runs in server, it is typically run on Linux, therefore to give you the most native experience of using MySQL, you are highly recommended to try to get access to an Linux operating system for the course.
+Then [fork this project](https://github.com/ichn-hu/IDBS-Spring20-Fudan) on GitHub, which will create a mirror repository under your own account.
 
-## Install MySQL and Go
+Then `git clone` your forked project in your local environment. You need to [setup your GitHub account on your local machine] for `git` if you have not yet done so.
 
-If you think that I am going to teach you how to install them step by step, then you are too naive!
 
-Try to use google to search "install A on B", substitute A with "MySQL" or "golang" and B with the name of your operating system, such as ["install MySQL on Archilinux"](https://lmgtfy.com/?q=install+MySQL+on+Archilinux)[^2]. Note that we will be using MySQL version 8.0, so be careful not to install MySQL 5.7.
 
-Although I am not telling you the steps, there are some common pitfalls that you should be aware of:
+## Table Creation
 
-* Do not leave the password blank when you are installing MySQL, give it a password for the root user, and memorize it. Later you will use this password as the root user to access the database.
+You need to create 3 tables under the database `ass1`, namely `employee`, `book` and `loan`.
 
-Well, if you are just too lazy, or can not find some good tutorial to teach you how to install them, here is the generous gift from your TA:
+Create a file named `create_table.sql` under your working directory, and write the SQL to create the tables asked in that file.
 
-* 
+The constraint for each table is:
+
+* `employee` has 4 columns, `id`, `name`, `office` and `age`, where `id` is the primary key and `name` and `office` is ascii string with length smaller than 32, while `age` is number between 0 and 100. Choose appropriate type for each column.
+* `book` also has 4 columns, `id`, `name`, `author` and `publisher`, where `id` is the primary key and other columns are all ascii string with length smaller than 32.
+* `record` has 3 columns, `book_id`, `employee_id` and `time`, where the two IDs are foreign keys that references the `id` column of `book` and `employee`, and `time` is of type `DATE`.
+
+Once you finished the table creation SQLs, create a database in your MySQL named `ass1`, and then run the following command in your command line with `username` replaced by your username (such as `root`), the command asks the MySQL client to connect to the MySQL server running at `localhost` on behalf of the user specified by the `username` and run the SQLs in the given file `create_table.sql` under database `ass1`.
+
+```
+mysql -h localhost -u username ass1 -p < create_table.sql
+```
+
+If `mysql` complaints about any error, try to fix it in `create_table.sql`. You could drop and recreate the database `ass1` if you've ruined the database with wrongly created tables.
+
+Once you've created the table, take a look at `assignments/ass1/insert_data.sql`, which inserts sample data into your newly created tables, run them through MySQL client as well:
+
+```
+mysql -h localhost -u username ass1 -p < path/to/assignments/ass1/insert_data.sql
+```
+
+## Query from the Database
+
+In this part, you are going to write querys to play with the database you just created.
+
+For each part, create a file in your working directory, for example `1.sql`, `2.sql` etc.
+
+1. Query all fields for employees named `Jones`
+2. Query the name of employees with ID equals to `1` or `2` (order dose not matter)
+3. Query the name of all employees except the one whose ID is `1` (ordered by ID)
+4. Query the name of all employees with age between 25 and 30 (inclusively, ordered by ID)
+5. Qeury all fields for employees whose name started with `J` (ordered by age)
+6. Query the names of all publishers, if one publisher has more than two books in the database, output the name of the publisher only once (ordered by name, ascii order)
+7. Query the id of all boos that is borrowed after `2016-10-31`, also the IDs should be distinct (ordered by id)
+8. Query for each employee who has borrowed book more than once, output the `id`, `name`, and number of borrow record (name the field `num`), ordered by `num` in descending order. This one is kind of challenging, the TA's solution uses JOIN, GROUP BY, HAVING and ORDER BY, check them out if you don't know what does these key words mean for MySQL.
+
+## Submit Your Solution
+
+Make sure you have files
+
+* `create_table.sql`
+* `1.sql`, ..., `8.sql`
+
+in your working directory, then use `tar -czf student_id.tar *.sql` to make a package of all your SQL files for the submission, substitute `student_id` with your student ID, for example `tar -czf 16307130177.tar *.sql`.
+
+You are supposed to submit the `.tar` file using GitHub.
+
+**Note**: the submitted `.tar` file will be rated using a script automat
+
 
 [^1]: https://db-engines.com/en/ranking
 [^2]: If you do not have access to Google, you should work out a way to get access to it, [here](https://www.uedbox.com/post/54776/) is a website that lists some mirror sites of Google that might be used in mainland China. If you failed to access Google after many attempts, then by all means try to use the international version of [bing](https://bing.com).
