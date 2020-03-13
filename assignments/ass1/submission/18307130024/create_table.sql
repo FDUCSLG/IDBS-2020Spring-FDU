@@ -1,12 +1,16 @@
-CREATE TABLE employee
+create table employee
 (
-    INT id
-    ,
+    id int primary key,
+    name varchar(32),
+    office varchar(32),
+    age int constraint cstage check(age <= 100 and age >= 0)
 );
-INSERT INTO employee
-VALUES
-    (1);
-CREATE TABLE eee
+
+create table book
 (
-    INT l
+    id int primary key,
+    name varchar(32),
+    author varchar(32),
+    publisher varchar(32)
 );
+
