@@ -498,7 +498,11 @@
 <p>First of all, create a GitHub id if you do not yet have one.</p>
 <p>Then <a href="https://github.com/ichn-hu/IDBS-Spring20-Fudan">fork this project</a> on GitHub, which will create a mirror repository under your own account.</p>
 <p>Then <code>git clone</code> your forked project in your local environment. You need to <a href="https://kbroman.org/github_tutorial/pages/first_time.html">setup your GitHub account on your local machine</a> for <code>git</code> if you have not yet done so.</p>
-<p>Once you've cloned the project in your local environment, get to <code>IDBS-Spring20-Fudan/assignments/submission</code> and create a directory and name it by your student id, for example <code>IDBS-Spring20-Fudan/assignments/submission/16307130177</code>, and this directory will be your working directory. You are ONLY allowed to modify files under this directory, any other modifications outside this directory will make your submission invalid.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="err">git clone https://github.com/your-github-id/IDBS-Spring20-Fudan.git</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Once you've cloned the project in your local environment, get to <code>IDBS-Spring20-Fudan/assignments/submission</code> and create a directory and name it by your student id, for example <code>IDBS-Spring20-Fudan/assignments/submission/16307130177</code>, and this directory will be your working directory. <strong>You are ONLY allowed to modify files under this directory, any other modifications outside this directory will make your submission invalid.</strong></p>
 <h2 id="table-creation">Table Creation<a class="headerlink" href="#table-creation" title="Permanent link">&para;</a></h2>
 <p>You need to create 3 tables under the database <code>ass1</code>, namely <code>employee</code>, <code>book</code> and <code>loan</code>.</p>
 <p>Create a file named <code>create_table.sql</code> under your working directory, and write the SQL to create the tables asked in that file.</p>
@@ -515,10 +519,11 @@
 
 <p>If <code>mysql</code> complaints about any error, try to fix it in <code>create_table.sql</code>. You could drop and recreate the database <code>ass1</code> if you've ruined the database with wrongly created tables.</p>
 <p>Once you've created the table, take a look at <code>assignments/ass1/insert_data.sql</code>, which inserts sample data into your newly created tables, run them through MySQL client as well:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="err">mysql -h localhost -u username ass1 -p &lt; path/to/assignments/ass1/insert_data.sql</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="err">mysql -h localhost -u username ass1 -p &lt; ../../insert_data.sql</span>
 </code></pre></div>
 </td></tr></table>
 
+<p>The data is meant for you to play with the database and test with your own SQLs. If you could not run them, it means the tables you've created using <code>create_table.sql</code> is wrong, please double check that your table creation SQLs are correct.</p>
 <h2 id="query-from-the-database">Query from the Database<a class="headerlink" href="#query-from-the-database" title="Permanent link">&para;</a></h2>
 <p>In this part, you are going to write querys to play with the database you just created.</p>
 <p>For each part, create a file in your working directory, for example <code>1.sql</code>, <code>2.sql</code> etc.</p>
@@ -542,21 +547,30 @@
 <p>Then use the following command to submit these files (run it at your working directory).</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="err">git add .</span>
-<span class="err">git commit -m &quot;submission of xxx for ass1&quot;</span>
-<span class="err">git push</span>
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="err">git add . # add your submission into git</span>
+<span class="err">git commit -m &quot;submission of xxx for ass1&quot; # identify your submission</span>
+<span class="err">git push # push your local submission to your remote forked repository</span>
 </code></pre></div>
 </td></tr></table>
 
-<p>And then get to your GitHub page and create a pull request. The time you create the pull request will be considered as the submission time.</p>
-<p><strong>Note</strong>: the submitted files will be evaluated using a automatic script written in golang, the script will later be uploaded, so make sure you follow all these instructions to make the file hiearchy correct, otherwise the script won't work and you will lose the mark.</p>
+<p>And then get to your GitHub page and create a pull request<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. The time you create the pull request will be considered as the submission time.</p>
+<p><strong>Note</strong>: the submitted files will be evaluated using an automatic script written in golang, the script will later be uploaded, so make sure you follow all these instructions to make the file hiearchy correct, otherwise the script won't work and you will lose the mark.</p>
+<p><strong>Also, do not cheat by looking at other's submission, it violates our honor code.</strong></p>
 <p>Should you have any question, try to search it using Google first. If want clarification of the assignment, then please create an issue in the project repository.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
-<p>There are many tutorials online about how to write SQL, you might find the following helpful</p>
+<p>There are many tutorials online about how to write SQL, you might find the following links helpful</p>
 <ul>
 <li><a href="https://www.mysqltutorial.org/">MySQL Tutorial</a></li>
 <li><a href="https://www.tutorialspoint.com/mysql/index.htm">MySQL Tutorial</a></li>
 </ul>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                 
