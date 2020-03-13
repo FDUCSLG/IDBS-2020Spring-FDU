@@ -14,3 +14,12 @@ create table book
     publisher varchar(32)
 );
 
+create table record
+(
+    book_id int,
+    employee_id int,
+    time date,
+    foreign key(book_id) references book(id) on delete cascade,
+    foreign key(employee_id) references employee(id) on delete cascade
+);
+
