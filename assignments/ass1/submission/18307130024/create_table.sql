@@ -6,3 +6,7 @@ CREATE TABLE employee
 INSERT INTO employee
 VALUES
     (1);
+CREATE TABLE eee
+(
+    INT l
+);
