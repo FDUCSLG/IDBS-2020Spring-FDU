@@ -24,7 +24,11 @@ Then [fork this project](https://github.com/ichn-hu/IDBS-Spring20-Fudan) on GitH
 
 Then `git clone` your forked project in your local environment. You need to [setup your GitHub account on your local machine](https://kbroman.org/github_tutorial/pages/first_time.html) for `git` if you have not yet done so.
 
-Once you've cloned the project in your local environment, get to `IDBS-Spring20-Fudan/assignments/submission` and create a directory and name it by your student id, for example `IDBS-Spring20-Fudan/assignments/submission/16307130177`, and this directory will be your working directory. You are ONLY allowed to modify files under this directory, any other modifications outside this directory will make your submission invalid.
+```
+git clone https://github.com/your-github-id/IDBS-Spring20-Fudan.git
+```
+
+Once you've cloned the project in your local environment, get to `IDBS-Spring20-Fudan/assignments/submission` and create a directory and name it by your student id, for example `IDBS-Spring20-Fudan/assignments/submission/16307130177`, and this directory will be your working directory. **You are ONLY allowed to modify files under this directory, any other modifications outside this directory will make your submission invalid.**
 
 ## Table Creation
 
@@ -49,8 +53,10 @@ If `mysql` complaints about any error, try to fix it in `create_table.sql`. You 
 Once you've created the table, take a look at `assignments/ass1/insert_data.sql`, which inserts sample data into your newly created tables, run them through MySQL client as well:
 
 ```
-mysql -h localhost -u username ass1 -p < path/to/assignments/ass1/insert_data.sql
+mysql -h localhost -u username ass1 -p < ../../insert_data.sql
 ```
+
+The data is meant for you to play with the database and test with your own SQLs. If you could not run them, it means the tables you've created using `create_table.sql` is wrong, please double check that your table creation SQLs are correct.
 
 ## Query from the Database
 
@@ -79,20 +85,24 @@ in your working directory.
 Then use the following command to submit these files (run it at your working directory).
 
 ```
-git add .
-git commit -m "submission of xxx for ass1"
-git push
+git add . # add your submission into git
+git commit -m "submission of xxx for ass1" # identify your submission
+git push # push your local submission to your remote forked repository
 ```
 
-And then get to your GitHub page and create a pull request. The time you create the pull request will be considered as the submission time.
+And then get to your GitHub page and create a pull request[^1]. The time you create the pull request will be considered as the submission time.
 
-**Note**: the submitted files will be evaluated using a automatic script written in golang, the script will later be uploaded, so make sure you follow all these instructions to make the file hiearchy correct, otherwise the script won't work and you will lose the mark.
+[^1]: https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork
+
+**Note**: the submitted files will be evaluated using an automatic script written in golang, the script will later be uploaded, so make sure you follow all these instructions to make the file hiearchy correct, otherwise the script won't work and you will lose the mark.
+
+**Also, do not cheat by looking at other's submission, it violates our honor code.**
 
 Should you have any question, try to search it using Google first. If want clarification of the assignment, then please create an issue in the project repository.
 
 ## References
 
-There are many tutorials online about how to write SQL, you might find the following helpful
+There are many tutorials online about how to write SQL, you might find the following links helpful
 
 * [MySQL Tutorial](https://www.mysqltutorial.org/)
 * [MySQL Tutorial](https://www.tutorialspoint.com/mysql/index.htm)
