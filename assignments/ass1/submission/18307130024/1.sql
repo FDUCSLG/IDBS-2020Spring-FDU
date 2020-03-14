@@ -1,3 +1,4 @@
 select *
 from employee
-where name = "Jones";
+where name = "Jones"
+;
