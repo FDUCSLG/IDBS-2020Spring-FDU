@@ -1,3 +1,5 @@
-SELECT DISTINCT name
+SELECT publisher 
 FROM book
-ORDER BY name;
+GROUP BY publisher
+HAVING count(id)>2
+ORDER BY publisher; 
