@@ -70,7 +70,7 @@ For each part, create a file in your working directory, for example `1.sql`, `2.
 4. Query the name of all employees with age between 25 and 30 (inclusively, ordered by ID)
 5. Qeury all fields for employees whose name started with `J` (ordered by age)
 6. Query the names of all publishers, if one publisher has more than two books in the database, output the name of the publisher only once (ordered by name, ascii order)
-7. Query the id of all boos that is borrowed after `2016-10-31`, also the IDs should be distinct (ordered by id)
+7. Query the id of all books that is borrowed after `2016-10-31`, also the IDs should be distinct (ordered by id)
 8. Query for each employee who has borrowed book more than once, output the `id`, `name`, and number of borrow record (name the field `num`), ordered by `num` in descending order. This one is kind of challenging, the TA's solution uses JOIN, GROUP BY, HAVING and ORDER BY, check them out if you don't know what does these key words mean for MySQL.
 
 ## Submit Your Solution
