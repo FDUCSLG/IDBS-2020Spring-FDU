@@ -20,3 +20,4 @@ CREATE TABLE record(
 	FOREIGN KEY (book_id) REFERENCES book(id),
 	FOREIGN KEY (employee_id) REFERENCES employee(id)
 );
+
