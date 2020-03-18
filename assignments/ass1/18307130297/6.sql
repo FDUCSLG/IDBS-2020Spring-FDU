@@ -1,6 +1,5 @@
-select distinct name
-from employee,record
-where id=employee_id
-group by id
-	having sum(book_id)>2
-order by name;
+select publisher
+from book
+group by publisher
+	having count(*)>2
+order by publisher;
