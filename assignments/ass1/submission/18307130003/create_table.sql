@@ -5,8 +5,7 @@ CREATE TABLE employee (
     office VARCHAR(32),
     age INT,
     CONSTRAINT age_range CHECK (
-        age BETWEEN 0
-        AND 100
+        age BETWEEN 0 AND 100
     )
 );
 
