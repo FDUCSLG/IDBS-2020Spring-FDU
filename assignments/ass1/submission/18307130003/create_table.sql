@@ -15,7 +15,7 @@ CREATE TABLE book (
     id INT NOT NULL,
     name VARCHAR(32) NOT NULL,
     author VARCHAR(32),
-    publisher VARCHAR(32),
+    publisher VARCHAR(32)
 );
 
 CREATE TABLE record (
