@@ -492,7 +492,7 @@
 <li>order by</li>
 <li>having</li>
 </ul>
-<p>to be able to finish the assginment.</p>
+<p>to be able to finish the assignment.</p>
 <h2 id="working-directory-setup">Working Directory Setup<a class="headerlink" href="#working-directory-setup" title="Permanent link">&para;</a></h2>
 <p>This is the first step of the assignment, you need to get yourself familiar with <code>git</code> and GitHub.</p>
 <p>First of all, create a GitHub id if you do not yet have one.</p>
@@ -504,7 +504,7 @@
 
 <p>Once you've cloned the project in your local environment, get to <code>IDBS-Spring20-Fudan/assignments/ass1/submission</code> and create a directory and name it by your student id, for example <code>IDBS-Spring20-Fudan/assignments/ass1/submission/16307130177</code>, and this directory will be your working directory. <strong>You are ONLY allowed to modify files under this directory, any other modifications outside this directory will make your submission invalid.</strong></p>
 <h2 id="table-creation">Table Creation<a class="headerlink" href="#table-creation" title="Permanent link">&para;</a></h2>
-<p>You need to create 3 tables under the database <code>ass1</code>, namely <code>employee</code>, <code>book</code> and <code>loan</code>.</p>
+<p>You need to create 3 tables under the database <code>ass1</code>, namely <code>employee</code>, <code>book</code> and <code>record</code>.</p>
 <p>Create a file named <code>create_table.sql</code> under your working directory, and write the SQL to create the tables asked in that file.</p>
 <p>The constraint for each table is:</p>
 <ul>
@@ -517,7 +517,7 @@
 </code></pre></div>
 </td></tr></table>
 
-<p>If <code>mysql</code> complaints about any error, try to fix it in <code>create_table.sql</code>. You could drop and recreate the database <code>ass1</code> if you've ruined the database with wrongly created tables.</p>
+<p>If <code>mysql</code> complains about any error, try to fix it in <code>create_table.sql</code>. You could drop and recreate the database <code>ass1</code> if you've ruined the database with wrongly created tables.</p>
 <p>Once you've created the table, take a look at <code>assignments/ass1/insert_data.sql</code>, which inserts sample data into your newly created tables, run them through MySQL client as well:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="err">mysql -h localhost -u username ass1 -p &lt; ../../insert_data.sql</span>
 </code></pre></div>
@@ -525,17 +525,17 @@
 
 <p>The data is meant for you to play with the database and test with your own SQLs. If you could not run them, it means the tables you've created using <code>create_table.sql</code> is wrong, please double check that your table creation SQLs are correct.</p>
 <h2 id="query-from-the-database">Query from the Database<a class="headerlink" href="#query-from-the-database" title="Permanent link">&para;</a></h2>
-<p>In this part, you are going to write querys to play with the database you just created.</p>
+<p>In this part, you are going to write queries to play with the database you just created.</p>
 <p>For each part, create a file in your working directory, for example <code>1.sql</code>, <code>2.sql</code> etc.</p>
 <ol>
 <li>Query all fields for employees named <code>Jones</code></li>
-<li>Query the name of employees with ID equals to <code>1</code> or <code>2</code> (order dose not matter)</li>
+<li>Query the name of employees with ID equals to <code>1</code> or <code>2</code> (order does not matter)</li>
 <li>Query the name of all employees except the one whose ID is <code>1</code> (ordered by ID)</li>
 <li>Query the name of all employees with age between 25 and 30 (inclusively, ordered by ID)</li>
-<li>Qeury all fields for employees whose name started with <code>J</code> (ordered by age)</li>
+<li>Query all fields for employees whose name started with <code>J</code> (ordered by age)</li>
 <li>Query the names of all publishers, if one publisher has more than two books in the database, output the name of the publisher only once (ordered by name, ascii order)</li>
 <li>Query the id of all books that is borrowed after <code>2016-10-31</code>, also the IDs should be distinct (ordered by id)</li>
-<li>Query for each employee who has borrowed book more than once, output the <code>id</code>, <code>name</code>, and number of borrow record (name the field <code>num</code>), ordered by <code>num</code> in descending order. This one is kind of challenging, the TA's solution uses JOIN, GROUP BY, HAVING and ORDER BY, check them out if you don't know what does these key words mean for MySQL.</li>
+<li>Query for each employee who has borrowed book more than once, output the <code>id</code>, <code>name</code>, and number of borrow record (name the field <code>num</code>), ordered by <code>num</code> in descending order. This one is kind of challenging, the TA's solution uses JOIN, GROUP BY, HAVING and ORDER BY, check them out if you don't know what these key words mean for MySQL.</li>
 </ol>
 <h2 id="submit-your-solution">Submit Your Solution<a class="headerlink" href="#submit-your-solution" title="Permanent link">&para;</a></h2>
 <p>Make sure you have files</p>
