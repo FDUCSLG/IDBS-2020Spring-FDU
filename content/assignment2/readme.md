@@ -83,6 +83,24 @@ $ git add . && git commit -m "update from upstream, start ass2" # commit your mo
 Now edit `utils.go`, in the first `YOUR CODE` block, put your student id in `EvaluateID`, `../../../ass1/submission/`
 for `SubmissionDir`, and the user name and password to connect your MySQL server.
 
+You could then run
+
+```bash
+$ go run main.go utils.go
+```
+
+at your working directory, you should see
+
+```text
+submission created
+```
+
+in the output if the configuration is correct. You could ignore the printed error message above, these messages are for you to know if there
+are any problems with the submissions of assignment 1. They are only relevant if you found your solution for assignment 1 is not compliant with
+the evaluator, then these error messages tell you why.
+
+If you want to argue about your submission for assignment 1, create another pull request with your modified submission for assignment 1 (only modify files in your working directory for assignment 1) and explain why you think you
+deserve a higher score in the pull request, mistakes like creating tables using all UPPERCASE names sound like possible to have a second chance.
 
 ## Concurrent Comparision Result Insert
 
