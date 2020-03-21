@@ -2,17 +2,17 @@
 
 In the first assignment, you have written several SQLs to help you build basic experience playing with MySQL, in this assignment you are going to continue the journey, but this time, you will use a programming language to interact with MySQL, namely, golang.
 
-Golang, developed by Google, is a statically typed programming langauge (we'll refer to golang as Go in the following content). It is becomming more and more popular in the recent several years, companies like bilibili[^1] [^3] and zhihu[^2] and so many more are using Go to build the backend of their applications. And the idea of cloud native and microservice are built almost on top of Go, just to name a few softwares in Go, docker, kubernetes, and TiDB (a distributed database compatible with MySQL, we probabily will also play with it in the future). So it is very desirable and meaningful to start to learn this language.
+Golang, developed by Google, is a statically typed programming language (we'll refer to golang as Go in the following content). It is becoming more and more popular in the recent several years, companies like bilibili[^1] [^3] and zhihu[^2] and so many more are using Go to build the backend of their applications. And the idea of cloud native and microservice are built almost on top of Go, just to name a few softwares in Go, docker, kubernetes, and TiDB (a distributed database compatible with MySQL, we probably will also play with it in the future). So it is very desirable and meaningful to start to learn this language.
 
 [^1]: https://github.com/bilibili/kratos
 [^2]: https://zhuanlan.zhihu.com/p/48039838
 [^3]: https://www.bilibili.com/video/av29079011/
 
 Go is also very simple, it is built with simplicity in mind, as long as you know how to write C code, it won't be hard
-to learn Go. However, Go does introduce many ideas that perhaps you are not familiar with, most of the the ideas are
+to learn Go. However, Go does introduce many ideas that perhaps you are not familiar with, most of the ideas are
 related to concurrency, such as `channel` and `goroutine`, we will be using these features extensively in the assignments,
 since database systems are built to allow (or welcome) concurrent accesses, and Go has a good fame of being a
-concurrency friendly programing language.
+concurrency friendly programming language.
 
 You might be frightened that you need to learn a new programming language, but it is a must for a good programmer to be
 fluent in many programming languages, and it won't be too hard given you already know at least one programming
@@ -61,13 +61,15 @@ $ cp assignments/ass2/evaluator/* assignments/ass2/submission/YOURSTUDENTID/ # c
 You can only modify the files in your own working directory, any attempts to modify files outside your working directory
 will make your submission invalid.
 
-Especially, only `utils.go` in your working directory will be considered in this assginment (other files will be ignored, see
+Especially, only `utils.go` in your working directory will be considered in this assignment (other files will be ignored, see
 `assignments/ass2/submission/.gitignore`). With this said, you could actually modify other provided files like
 `main.go` if it helps you with understanding the code or debugging your own code, but your modification will not be
 considered when we evaluate your submission, and you should make sure your code in `utils.go` can work with the original
 codebase.
 
 You should generally only put your code between `YOUR CODE BEGIN` and `YOUR CODE END`. The evaluation of assignment 2 will be based on the three functions you filled in in `utils.go`.
+
+As for the packages, you can not introduce any other external packages (the `go.mod` file will be ignored for your submission, even if you do, we will not be able to run it). You are free to use other internal packages, as a reference the TA's solution only uses `sync` and `reflect`.
 
 ### Create a New Branch for Development
 
@@ -108,14 +110,14 @@ deserve a higher score in the pull request, mistakes like creating tables using 
 
 Each submission created will have an integer array `score`, and `score[0]` is 0 if the submission's `create_table.sql` is wrong, otherwise it will be 1. `score[1]` to `score[8]` stands for the score for query 1 to query 8 in assignment 1, and they are obtained in the following manner.
 
-## Concurrent Comparision Result Insert
+## Concurrent Comparison Result Insert
 
 Take a look at `compareAndInsert`, which compares each submissions with all the submissions on each query, and insert a record for the comparison in the table `comparison_result`.
 
 The problem of this function is that it is single-threaded. As you might know, access database is IO-bounded, the CPU might wait for a lot of time for the response of the database, so it makes sense to make the insert concurrent so that the CPU could get more busy and making the insert faster.
 
 The single thread version provided in the provided code takes almost 1 minutes on your TA's laptop to insert 7200
-records in the the database. This is too slow! The QPS (query per second) is about 7200 / 60 = 120.
+records in the database. This is too slow! The QPS (query per second) is about 7200 / 60 = 120.
 
 With the help of goroutine, it can be easily made concurrent, so please make it concurrent and improve the QPS in `ConcurrentCompareAndInsert`. As a reference, it takes less than 4 seconds with your TA's simple concurrent version, a speed up of 15x.
 
@@ -145,7 +147,7 @@ ConcurrentCompareAndInsert Not Implemented
 
 ## Evaluate the Score
 
-Once you get all the comparision result, it is time to get the score for each submission on each query.
+Once you get all the comparison result, it is time to get the score for each submission on each query.
 
 We evaluate the submission using the following rule. In `comparision_result`, for each query, each
 submission has record of `is_equal` to every submissions, and the sum of `is_equal` is the vote of
@@ -185,7 +187,7 @@ GetScoreSQL Not Implemented
 
 ## Get the Score
 
-Finally, you need to fill in each submission's `score` (i.e. `Submission.score`) with the data in table `score`. Finish `GetScore` and you will get output like
+Finally, you need to fill in each submission's `score` (i.e. `Submission.score`) with the data in table `score`. Finish `GetScore` and read score from table `score` and you will get output like
 
 ```text
 ...
@@ -201,6 +203,13 @@ if you run `go run main.go utils.go`.
 ## Submit your solution
 
 As you have done for assignment 1, commit your change for `utils.go` and create a pull request to submit it.
+
+Since you used another branch (`ass2` as your TA told you above), do the following to push your code to your
+repository
+
+```bash
+$ git push --set-upstream origin ass2
+```
 
 Also do not look at other's submission before your submission get merged.
 

@@ -1,4 +1,4 @@
-module github.com/ichn-hu/IDBS-Spring20-Fudan/assignments/evaluator
+module github.com/ichn-hu/IDBS-Spring20-Fudan/assignments/ass2/evaluator
 
 go 1.14
 

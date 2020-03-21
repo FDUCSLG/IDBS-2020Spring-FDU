@@ -10,11 +10,11 @@ import (
 	"time"
 
 	_ "github.com/go-sql-driver/mysql" // this is the driver for mysql
-	sql "github.com/jmoiron/sqlx" // this is the connector, both package are external packages that you need to use `go install` to install before use
+	sql "github.com/jmoiron/sqlx"      // this is the connector, both package are external packages that you need to use `go install` to install before use
 )
 
 const (
-	NumSQL        = 8
+	NumSQL = 8
 )
 
 type Submission struct {
@@ -44,7 +44,7 @@ func newSubmission(submitter string) (sub *Submission, err error) {
 		db:         db,
 		submitter:  submitter,
 		workingDir: filepath.Join(SubmissionDir, submitter),
-		score:      make([]int, NumSQL + 1),
+		score:      make([]int, NumSQL+1),
 		sqls:       make([]string, NumSQL),
 		sqlResults: make([][]map[string]interface{}, NumSQL),
 	}
@@ -148,10 +148,10 @@ func (sub *Submission) querySQLs() {
 				}
 				sub.sqlResults[i] = results
 			} else {
-				fmt.Println(sub.submitter, " ", i + 1, " ", err)
+				fmt.Println(sub.submitter, " ", i+1, " ", err)
 			}
 		} else {
-			fmt.Println(sub.submitter, " ", i + 1, " ", err)
+			fmt.Println(sub.submitter, " ", i+1, " ", err)
 		}
 	}
 }
@@ -175,7 +175,7 @@ func compareAndInsert(subs map[string]*Submission) {
 				} else {
 					equal = 0
 				}
-				s := fmt.Sprintf("INSERT INTO result VALUES ('%s', '%s', %d, %d)", submitter, comparer, i+1, equal)
+				s := fmt.Sprintf("INSERT INTO comparison_result VALUES ('%s', '%s', %d, %d)", submitter, comparer, i+1, equal)
 				_, err := db.Exec(s)
 				if err != nil {
 					fmt.Println(s)
@@ -195,13 +195,12 @@ func insertComparisonResult(subs map[string]*Submission) {
 		fmt.Sprintf("DROP DATABASE IF EXISTS ass1_result_evaluated_by_%s", EvaluatorID),
 		fmt.Sprintf("CREATE DATABASE ass1_result_evaluated_by_%s", EvaluatorID),
 		fmt.Sprintf("USE ass1_result_evaluated_by_%s", EvaluatorID),
-		"CREATE TABLE comparision_result (submitter CHAR(11), comparer CHAR(11), item INT, is_equal INT)",
+		"CREATE TABLE comparison_result (submitter CHAR(11), comparer CHAR(11), item INT, is_equal INT)",
 	})
 	ConcurrentCompareAndInsert(subs)
 	// uncomment the following line to see how slow the single-thread insert is
 	// compareAndInsert(subs)
 }
-
 
 func createScoreTable(subs map[string]*Submission) {
 	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(127.0.0.1:3306)/ass1_result_evaluated_by_%s", User, Password, EvaluatorID))

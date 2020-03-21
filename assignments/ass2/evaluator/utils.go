@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 	"time"
-    // YOUR CODE BEGIN remove the follow packages if you don't need them
-	"sync"
-	"reflect"
-    // YOUR CODE END
+
+	// YOUR CODE BEGIN remove the follow packages if you don't need them
+
+	// YOUR CODE END
 
 	_ "github.com/go-sql-driver/mysql"
 	sql "github.com/jmoiron/sqlx"
@@ -14,10 +14,10 @@ import (
 
 var (
 	// YOUR CODE BELOW
-	EvaluatorID = "" // your student id, e.g. 18307130177
+	EvaluatorID   = "" // your student id, e.g. 18307130177
 	SubmissionDir = "" // the relative path the the submission directory of assignment 1, it should be "../../../ass1/submission/"
-	User        = "" // the user name to connect the database, e.g. root
-	Password    = "" // the password for the user name, e.g. xxx
+	User          = "" // the user name to connect the database, e.g. root
+	Password      = "" // the password for the user name, e.g. xxx
 	// YOUR CODE END
 )
 
@@ -29,7 +29,7 @@ func ConcurrentCompareAndInsert(subs map[string]*Submission) {
 		if err != nil {
 			panic(nil)
 		}
-		rows, err := db.Query("SELECT COUNT(*) FROM comparision_result")
+		rows, err := db.Query("SELECT COUNT(*) FROM comparison_result")
 		if err != nil {
 			panic(err)
 		}
@@ -49,7 +49,6 @@ func ConcurrentCompareAndInsert(subs map[string]*Submission) {
 	// YOUR CODE END
 }
 
-
 // GetScoreSQL returns a string which contains only ONE SQL to be executed, which collects the data in table
 // `comparision_result` and inserts the score of each submitter on each query into table `score`
 func GetScoreSQL() string {
@@ -66,4 +65,3 @@ func GetScore(db *sql.DB, subs map[string]*Submission) {
 
 	// YOUR CODE END
 }
-
