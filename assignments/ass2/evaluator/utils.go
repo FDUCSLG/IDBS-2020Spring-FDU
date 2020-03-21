@@ -3,8 +3,10 @@ package main
 import (
 	"fmt"
 	"time"
+    // YOUR CODE BEGIN remove the follow packages if you don't need them
 	"sync"
 	"reflect"
+    // YOUR CODE END
 
 	_ "github.com/go-sql-driver/mysql"
 	sql "github.com/jmoiron/sqlx"
