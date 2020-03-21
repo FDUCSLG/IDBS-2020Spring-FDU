@@ -149,13 +149,13 @@ ConcurrentCompareAndInsert Not Implemented
 
 Once you get all the comparison result, it is time to get the score for each submission on each query.
 
-We evaluate the submission using the following rule. In `comparision_result`, for each query, each
+We evaluate the submission using the following rule. In `comparison_result`, for each query, each
 submission has record of `is_equal` to every submissions, and the sum of `is_equal` is the vote of
 the submission for the query, if the submission has the highest vote, i.e. most of submissions agreed with this submission's result on the query, the score of the submission on this query will be 1, otherwise 0.
 
 You need to use **a single query** to insert the score result in the table `score` created in `createScoreTable`, where `submitter` is the ID of the submitter of the submission, item ranges from 1 to 8 and stands for each query, score being 0 or 1 means the score of `submitter` on query `item`, and `vote` is the vote mentioned above for sanity check.
 
-You need to finish `GetScoreSQL` in `utils.go`, which only returns a single string containing the query sent to MySQL that reads from `comparision_result` and inserts into `score`.
+You need to finish `GetScoreSQL` in `utils.go`, which only returns a single string containing the query sent to MySQL that reads from `comparison_result` and inserts into `score`.
 
 This query can be rather complex and challenging, here are some hints that might be helpful
 
