@@ -153,6 +153,8 @@ We evaluate the submission using the following rule. In `comparison_result`, for
 submission has record of `is_equal` to every submissions, and the sum of `is_equal` is the vote of
 the submission for the query, if the submission has the highest vote, i.e. most of submissions agreed with this submission's result on the query, the score of the submission on this query will be 1, otherwise 0.
 
+Look at the [output bellow in hints](#hints) if you are still not sure how the rule works.
+
 You need to use **a single query** to insert the score result in the table `score` created in `createScoreTable`, where `submitter` is the ID of the submitter of the submission, item ranges from 1 to 8 and stands for each query, score being 0 or 1 means the score of `submitter` on query `item`, and `vote` is the vote mentioned above for sanity check.
 
 You need to finish `GetScoreSQL` in `utils.go`, which only returns a single string containing the query sent to MySQL that reads from `comparison_result` and inserts into `score`.
@@ -199,6 +201,133 @@ Finally, you need to fill in each submission's `score` (i.e. `Submission.score`)
 ```
 
 if you run `go run main.go utils.go`.
+
+## Hints
+
+The sample output from your TA is
+
+??? note "sample output"
+    ```text
+    ╰─$ go run main.go utils.go                              
+    18307130154   0   Error 1146: Table 'ass1_18307130154.employee' doesn't exist                                      
+    18307130163   0   Error 1049: Unknown database 'ass1'    
+    19307130296   0   Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CREATE TABLE book(
+            id int(32) not null auto_increment primary key,  
+        name var' at line 8                                  
+    18307130071   1   Error 1054: Unknown column 'jones' in 'where clause'                                             
+    18307130071   2   Error 1146: Table 'ass1_18307130071.empolyee' doesn't exist                                      
+    18307130071   7   Error 1630: FUNCTION time.AFTER does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
+    18307130071   8   Error 1054: Unknown column 'id' in 'field list'                                                  
+    18307130102   7   Error 1305: FUNCTION ass1_18307130102.to_date does not exist                                     
+    19307130296   7   Error 1054: Unknown column 'id' in 'order clause'                                                
+    19307130296   8   Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT *
+        FROM record                                          
+        WHERE record.employee_id=employee.id                 
+    ) AS num>1                                               
+    ORD' at line 5                                           
+    18307130213   0   Error 1146: Table 'ass1_18307130213.employee' doesn't exist                                      
+    18307130297   7   Error 1054: Unknown column 'id' in 'field list'                                                  
+    18307130252   8   Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+    on employee.id = X.id                                    
+    where X.num > 1                                          
+    order by X.num desc' at line 4                           
+    18307130213   1   Error 1146: Table 'ass1_18307130213.EMPLOYEE' doesn't exist                                      
+    18307130213   2   Error 1146: Table 'ass1_18307130213.EMPLOYEE' doesn't exist                                      
+    18307130213   3   Error 1146: Table 'ass1_18307130213.EMPLOYEE' doesn't exist                                      
+    18307130213   4   Error 1146: Table 'ass1_18307130213.EMPLOYEE' doesn't exist                                      
+    18307130213   5   Error 1146: Table 'ass1_18307130213.EMPLOYEE' doesn't exist                                      
+    18307130213   6   Error 1146: Table 'ass1_18307130213.BOOK' doesn't exist                                          
+    18307130213   7   Error 1146: Table 'ass1_18307130213.BOOK' doesn't exist
+    18307130252   8   Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+    on employee.id = X.id
+    where X.num > 1
+    order by X.num desc' at line 4
+    18307130213   1   Error 1146: Table 'ass1_18307130213.EMPLOYEE' doesn't exist
+    18307130213   2   Error 1146: Table 'ass1_18307130213.EMPLOYEE' doesn't exist
+    18307130213   3   Error 1146: Table 'ass1_18307130213.EMPLOYEE' doesn't exist
+    18307130213   4   Error 1146: Table 'ass1_18307130213.EMPLOYEE' doesn't exist
+    18307130213   5   Error 1146: Table 'ass1_18307130213.EMPLOYEE' doesn't exist
+    18307130213   6   Error 1146: Table 'ass1_18307130213.BOOK' doesn't exist
+    18307130213   7   Error 1146: Table 'ass1_18307130213.BOOK' doesn't exist
+    18307130213   8   Error 1146: Table 'ass1_18307130213.EMPLOYEE' doesn't exist
+    submission created
+    ConcurrentCompareAndInsert takes  4.491039717s
+    GetScoreSQL inserted 264 records into score
+    18307130017 1 1 1 1 1 1 1 1 0
+    18307130122 1 1 1 1 1 1 1 1 0
+    18307130213 0 0 0 0 0 0 0 0 0
+    18300750006 1 1 1 1 1 1 1 1 1
+    19307130296 0 1 1 1 1 0 1 0 0
+    18307130024 1 1 1 1 1 1 1 1 1
+    18307130027 1 1 1 1 1 0 1 1 1
+    18307130102 1 1 1 1 1 1 1 0 1
+    18307130103 1 1 1 1 1 1 1 0 1
+    18307130112 1 1 1 1 1 1 0 1 0
+    18307130154 0 1 1 1 1 1 1 0 1
+    18307130297 1 1 1 1 1 1 1 0 0
+    15307130201 1 1 1 1 1 1 1 1 1
+    18307130128 1 1 1 1 1 1 1 1 0
+    18307130252 1 1 1 1 1 1 1 1 0
+    18307130266 1 1 1 1 1 1 1 1 1
+    18307130003 1 1 1 1 1 1 1 1 1
+    18307130182 1 1 1 1 1 1 1 1 1
+    19300290059 1 1 1 1 1 1 0 1 1
+    18307130071 1 0 0 0 0 1 0 0 0
+    18300200015 1 1 1 1 1 1 1 1 0
+    18307130031 1 1 1 1 1 1 1 0 1
+    18307130090 1 1 1 1 1 1 1 0 0
+    18307130116 1 1 1 1 1 1 1 0 0
+    18307130126 1 1 1 1 1 1 1 1 1
+    18307130172 1 1 1 1 1 1 1 0 1
+    18307130341 1 1 1 1 1 1 1 1 1
+    18300200009 1 1 1 1 1 1 1 0 0
+    18307130104 1 1 1 1 1 1 1 0 1
+    18307130123 1 1 1 1 1 1 1 1 1
+    18307130163 0 1 1 1 1 1 1 0 1
+    18307130340 1 1 1 1 1 1 1 1 1
+    18300200012 1 1 1 1 1 1 1 0 1
+    ```
+
+And some sample from table `score`
+
+??? note "sample from `score`"
+    ```text
+    ass1_result_evaluated_by_16307130177> select * from score limit 30;                                                
+    +-------------+------+-------+------+
+    | submitter   | item | score | vote |
+    +-------------+------+-------+------+
+    | 15307130201 | 1    | 1     | 31   |
+    | 15307130201 | 2    | 1     | 31   |
+    | 15307130201 | 3    | 1     | 31   |
+    | 15307130201 | 4    | 1     | 31   |
+    | 15307130201 | 5    | 1     | 30   |
+    | 15307130201 | 6    | 1     | 29   |
+    | 15307130201 | 7    | 1     | 18   |
+    | 15307130201 | 8    | 1     | 20   |
+    | 18300200009 | 1    | 1     | 31   |
+    | 18300200009 | 2    | 1     | 31   |
+    | 18300200009 | 3    | 1     | 31   |
+    | 18300200009 | 4    | 1     | 31   |
+    | 18300200009 | 5    | 1     | 30   |
+    | 18300200009 | 6    | 1     | 29   |
+    | 18300200009 | 7    | 0     | 2    |
+    | 18300200009 | 8    | 0     | 4    |
+    | 18300200012 | 1    | 1     | 31   |
+    | 18300200012 | 2    | 1     | 31   |
+    | 18300200012 | 3    | 1     | 31   |
+    | 18300200012 | 4    | 1     | 31   |
+    | 18300200012 | 5    | 1     | 30   |
+    | 18300200012 | 6    | 1     | 29   |
+    | 18300200012 | 7    | 0     | 5    |
+    | 18300200012 | 8    | 1     | 20   |
+    | 18300200015 | 1    | 1     | 31   |
+    | 18300200015 | 2    | 1     | 31   |
+    | 18300200015 | 3    | 1     | 31   |
+    | 18300200015 | 4    | 1     | 31   |
+    | 18300200015 | 5    | 1     | 30   |
+    | 18300200015 | 6    | 1     | 29   |
+    +-------------+------+-------+------+
+    ```
 
 ## Submit your solution
 
