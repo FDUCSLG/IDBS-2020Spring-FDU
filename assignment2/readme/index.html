@@ -710,11 +710,11 @@ records in the database. This is too slow! The QPS (query per second) is about 7
 
 <h2 id="evaluate-the-score">Evaluate the Score<a class="headerlink" href="#evaluate-the-score" title="Permanent link">&para;</a></h2>
 <p>Once you get all the comparison result, it is time to get the score for each submission on each query.</p>
-<p>We evaluate the submission using the following rule. In <code>comparision_result</code>, for each query, each
+<p>We evaluate the submission using the following rule. In <code>comparison_result</code>, for each query, each
 submission has record of <code>is_equal</code> to every submissions, and the sum of <code>is_equal</code> is the vote of
 the submission for the query, if the submission has the highest vote, i.e. most of submissions agreed with this submission's result on the query, the score of the submission on this query will be 1, otherwise 0.</p>
 <p>You need to use <strong>a single query</strong> to insert the score result in the table <code>score</code> created in <code>createScoreTable</code>, where <code>submitter</code> is the ID of the submitter of the submission, item ranges from 1 to 8 and stands for each query, score being 0 or 1 means the score of <code>submitter</code> on query <code>item</code>, and <code>vote</code> is the vote mentioned above for sanity check.</p>
-<p>You need to finish <code>GetScoreSQL</code> in <code>utils.go</code>, which only returns a single string containing the query sent to MySQL that reads from <code>comparision_result</code> and inserts into <code>score</code>.</p>
+<p>You need to finish <code>GetScoreSQL</code> in <code>utils.go</code>, which only returns a single string containing the query sent to MySQL that reads from <code>comparison_result</code> and inserts into <code>score</code>.</p>
 <p>This query can be rather complex and challenging, here are some hints that might be helpful</p>
 <ul>
 <li>UNION is a good wait to combine result of multiple queries</li>
