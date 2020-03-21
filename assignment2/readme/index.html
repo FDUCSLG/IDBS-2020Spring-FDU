@@ -467,6 +467,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#hints" class="md-nav__link">
+    Hints
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#submit-your-solution" class="md-nav__link">
     Submit your solution
   </a>
@@ -567,6 +574,13 @@
         <li class="md-nav__item">
   <a href="#get-the-score" class="md-nav__link">
     Get the Score
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hints" class="md-nav__link">
+    Hints
   </a>
   
 </li>
@@ -713,6 +727,7 @@ records in the database. This is too slow! The QPS (query per second) is about 7
 <p>We evaluate the submission using the following rule. In <code>comparison_result</code>, for each query, each
 submission has record of <code>is_equal</code> to every submissions, and the sum of <code>is_equal</code> is the vote of
 the submission for the query, if the submission has the highest vote, i.e. most of submissions agreed with this submission's result on the query, the score of the submission on this query will be 1, otherwise 0.</p>
+<p>Look at the <a href="#hints">output bellow in hints</a> if you are still not sure how the rule works.</p>
 <p>You need to use <strong>a single query</strong> to insert the score result in the table <code>score</code> created in <code>createScoreTable</code>, where <code>submitter</code> is the ID of the submitter of the submission, item ranges from 1 to 8 and stands for each query, score being 0 or 1 means the score of <code>submitter</code> on query <code>item</code>, and <code>vote</code> is the vote mentioned above for sanity check.</p>
 <p>You need to finish <code>GetScoreSQL</code> in <code>utils.go</code>, which only returns a single string containing the query sent to MySQL that reads from <code>comparison_result</code> and inserts into <code>score</code>.</p>
 <p>This query can be rather complex and challenging, here are some hints that might be helpful</p>
@@ -756,6 +771,241 @@ the submission for the query, if the submission has the highest vote, i.e. most 
 </td></tr></table>
 
 <p>if you run <code>go run main.go utils.go</code>.</p>
+<h2 id="hints">Hints<a class="headerlink" href="#hints" title="Permanent link">&para;</a></h2>
+<p>The sample output from your TA is</p>
+<details class="note"><summary>sample output</summary><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>╰─$ go run main.go utils.go                              
+18307130154   0   Error 1146: Table &#39;ass1_18307130154.employee&#39; doesn&#39;t exist                                      
+18307130163   0   Error 1049: Unknown database &#39;ass1&#39;    
+19307130296   0   Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;CREATE TABLE book(
+        id int(32) not null auto_increment primary key,  
+    name var&#39; at line 8                                  
+18307130071   1   Error 1054: Unknown column &#39;jones&#39; in &#39;where clause&#39;                                             
+18307130071   2   Error 1146: Table &#39;ass1_18307130071.empolyee&#39; doesn&#39;t exist                                      
+18307130071   7   Error 1630: FUNCTION time.AFTER does not exist. Check the &#39;Function Name Parsing and Resolution&#39; section in the Reference Manual
+18307130071   8   Error 1054: Unknown column &#39;id&#39; in &#39;field list&#39;                                                  
+18307130102   7   Error 1305: FUNCTION ass1_18307130102.to_date does not exist                                     
+19307130296   7   Error 1054: Unknown column &#39;id&#39; in &#39;order clause&#39;                                                
+19307130296   8   Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;SELECT *
+    FROM record                                          
+    WHERE record.employee_id=employee.id                 
+) AS num&gt;1                                               
+ORD&#39; at line 5                                           
+18307130213   0   Error 1146: Table &#39;ass1_18307130213.employee&#39; doesn&#39;t exist                                      
+18307130297   7   Error 1054: Unknown column &#39;id&#39; in &#39;field list&#39;                                                  
+18307130252   8   Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;)
+on employee.id = X.id                                    
+where X.num &gt; 1                                          
+order by X.num desc&#39; at line 4                           
+18307130213   1   Error 1146: Table &#39;ass1_18307130213.EMPLOYEE&#39; doesn&#39;t exist                                      
+18307130213   2   Error 1146: Table &#39;ass1_18307130213.EMPLOYEE&#39; doesn&#39;t exist                                      
+18307130213   3   Error 1146: Table &#39;ass1_18307130213.EMPLOYEE&#39; doesn&#39;t exist                                      
+18307130213   4   Error 1146: Table &#39;ass1_18307130213.EMPLOYEE&#39; doesn&#39;t exist                                      
+18307130213   5   Error 1146: Table &#39;ass1_18307130213.EMPLOYEE&#39; doesn&#39;t exist                                      
+18307130213   6   Error 1146: Table &#39;ass1_18307130213.BOOK&#39; doesn&#39;t exist                                          
+18307130213   7   Error 1146: Table &#39;ass1_18307130213.BOOK&#39; doesn&#39;t exist
+18307130252   8   Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;)
+on employee.id = X.id
+where X.num &gt; 1
+order by X.num desc&#39; at line 4
+18307130213   1   Error 1146: Table &#39;ass1_18307130213.EMPLOYEE&#39; doesn&#39;t exist
+18307130213   2   Error 1146: Table &#39;ass1_18307130213.EMPLOYEE&#39; doesn&#39;t exist
+18307130213   3   Error 1146: Table &#39;ass1_18307130213.EMPLOYEE&#39; doesn&#39;t exist
+18307130213   4   Error 1146: Table &#39;ass1_18307130213.EMPLOYEE&#39; doesn&#39;t exist
+18307130213   5   Error 1146: Table &#39;ass1_18307130213.EMPLOYEE&#39; doesn&#39;t exist
+18307130213   6   Error 1146: Table &#39;ass1_18307130213.BOOK&#39; doesn&#39;t exist
+18307130213   7   Error 1146: Table &#39;ass1_18307130213.BOOK&#39; doesn&#39;t exist
+18307130213   8   Error 1146: Table &#39;ass1_18307130213.EMPLOYEE&#39; doesn&#39;t exist
+submission created
+ConcurrentCompareAndInsert takes  4.491039717s
+GetScoreSQL inserted 264 records into score
+18307130017 1 1 1 1 1 1 1 1 0
+18307130122 1 1 1 1 1 1 1 1 0
+18307130213 0 0 0 0 0 0 0 0 0
+18300750006 1 1 1 1 1 1 1 1 1
+19307130296 0 1 1 1 1 0 1 0 0
+18307130024 1 1 1 1 1 1 1 1 1
+18307130027 1 1 1 1 1 0 1 1 1
+18307130102 1 1 1 1 1 1 1 0 1
+18307130103 1 1 1 1 1 1 1 0 1
+18307130112 1 1 1 1 1 1 0 1 0
+18307130154 0 1 1 1 1 1 1 0 1
+18307130297 1 1 1 1 1 1 1 0 0
+15307130201 1 1 1 1 1 1 1 1 1
+18307130128 1 1 1 1 1 1 1 1 0
+18307130252 1 1 1 1 1 1 1 1 0
+18307130266 1 1 1 1 1 1 1 1 1
+18307130003 1 1 1 1 1 1 1 1 1
+18307130182 1 1 1 1 1 1 1 1 1
+19300290059 1 1 1 1 1 1 0 1 1
+18307130071 1 0 0 0 0 1 0 0 0
+18300200015 1 1 1 1 1 1 1 1 0
+18307130031 1 1 1 1 1 1 1 0 1
+18307130090 1 1 1 1 1 1 1 0 0
+18307130116 1 1 1 1 1 1 1 0 0
+18307130126 1 1 1 1 1 1 1 1 1
+18307130172 1 1 1 1 1 1 1 0 1
+18307130341 1 1 1 1 1 1 1 1 1
+18300200009 1 1 1 1 1 1 1 0 0
+18307130104 1 1 1 1 1 1 1 0 1
+18307130123 1 1 1 1 1 1 1 1 1
+18307130163 0 1 1 1 1 1 1 0 1
+18307130340 1 1 1 1 1 1 1 1 1
+18300200012 1 1 1 1 1 1 1 0 1
+</code></pre></div>
+</td></tr></table>
+
+</details>
+<p>And some sample from table <code>score</code></p>
+<details class="note"><summary>sample from <code>score</code></summary><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>ass1_result_evaluated_by_16307130177&gt; select * from score limit 30;                                                
++-------------+------+-------+------+
+| submitter   | item | score | vote |
++-------------+------+-------+------+
+| 15307130201 | 1    | 1     | 31   |
+| 15307130201 | 2    | 1     | 31   |
+| 15307130201 | 3    | 1     | 31   |
+| 15307130201 | 4    | 1     | 31   |
+| 15307130201 | 5    | 1     | 30   |
+| 15307130201 | 6    | 1     | 29   |
+| 15307130201 | 7    | 1     | 18   |
+| 15307130201 | 8    | 1     | 20   |
+| 18300200009 | 1    | 1     | 31   |
+| 18300200009 | 2    | 1     | 31   |
+| 18300200009 | 3    | 1     | 31   |
+| 18300200009 | 4    | 1     | 31   |
+| 18300200009 | 5    | 1     | 30   |
+| 18300200009 | 6    | 1     | 29   |
+| 18300200009 | 7    | 0     | 2    |
+| 18300200009 | 8    | 0     | 4    |
+| 18300200012 | 1    | 1     | 31   |
+| 18300200012 | 2    | 1     | 31   |
+| 18300200012 | 3    | 1     | 31   |
+| 18300200012 | 4    | 1     | 31   |
+| 18300200012 | 5    | 1     | 30   |
+| 18300200012 | 6    | 1     | 29   |
+| 18300200012 | 7    | 0     | 5    |
+| 18300200012 | 8    | 1     | 20   |
+| 18300200015 | 1    | 1     | 31   |
+| 18300200015 | 2    | 1     | 31   |
+| 18300200015 | 3    | 1     | 31   |
+| 18300200015 | 4    | 1     | 31   |
+| 18300200015 | 5    | 1     | 30   |
+| 18300200015 | 6    | 1     | 29   |
++-------------+------+-------+------+
+</code></pre></div>
+</td></tr></table>
+
+</details>
 <h2 id="submit-your-solution">Submit your solution<a class="headerlink" href="#submit-your-solution" title="Permanent link">&para;</a></h2>
 <p>As you have done for assignment 1, commit your change for <code>utils.go</code> and create a pull request to submit it.</p>
 <p>Since you used another branch (<code>ass2</code> as your TA told you above), do the following to push your code to your
