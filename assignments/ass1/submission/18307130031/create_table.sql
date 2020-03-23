@@ -1,0 +1,21 @@
+CREATE TABLE employee
+(id INTEGER NOT NULL,
+ name VARCHAR(32) NOT NULL,
+ office VARCHAR(32) NOT NULL,
+ age INTEGER NOT NULL,
+ PRIMARY KEY(id));
+
+CREATE TABLE book
+(id INTEGER NOT NULL,
+ name VARCHAR(32) NOT NULL,
+ author VARCHAR(32) NOT NULL,
+ publisher VARCHAR(32) NOT NULL,
+ PRIMARY KEY(id));
+
+CREATE TABLE record
+(book_id INTEGER NOT NULL,
+ employee_id INTEGER NOT NULL,
+ time DATE NOT NULL,
+ FOREIGN KEY(book_id) REFERENCES book(id),
+ FOREIGN KEY(employee_id) REFERENCES employee(id));
+

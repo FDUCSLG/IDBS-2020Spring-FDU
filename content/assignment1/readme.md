@@ -12,7 +12,7 @@ Basically you need to use
 * order by
 * having
 
-to be able to finish the assginment.
+to be able to finish the assignment.
 
 ## Working Directory Setup
 
@@ -32,7 +32,7 @@ Once you've cloned the project in your local environment, get to `IDBS-Spring20-
 
 ## Table Creation
 
-You need to create 3 tables under the database `ass1`, namely `employee`, `book` and `loan`.
+You need to create 3 tables under the database `ass1`, namely `employee`, `book` and `record`.
 
 Create a file named `create_table.sql` under your working directory, and write the SQL to create the tables asked in that file.
 
@@ -48,7 +48,7 @@ Once you finished the table creation SQLs, create a database in your MySQL named
 mysql -h localhost -u username ass1 -p < create_table.sql
 ```
 
-If `mysql` complaints about any error, try to fix it in `create_table.sql`. You could drop and recreate the database `ass1` if you've ruined the database with wrongly created tables.
+If `mysql` complains about any error, try to fix it in `create_table.sql`. You could drop and recreate the database `ass1` if you've ruined the database with wrongly created tables.
 
 Once you've created the table, take a look at `assignments/ass1/insert_data.sql`, which inserts sample data into your newly created tables, run them through MySQL client as well:
 
@@ -60,18 +60,18 @@ The data is meant for you to play with the database and test with your own SQLs.
 
 ## Query from the Database
 
-In this part, you are going to write querys to play with the database you just created.
+In this part, you are going to write queries to play with the database you just created.
 
 For each part, create a file in your working directory, for example `1.sql`, `2.sql` etc.
 
 1. Query all fields for employees named `Jones`
-2. Query the name of employees with ID equals to `1` or `2` (order dose not matter)
+2. Query the name of employees with ID equals to `1` or `2` (order does not matter)
 3. Query the name of all employees except the one whose ID is `1` (ordered by ID)
 4. Query the name of all employees with age between 25 and 30 (inclusively, ordered by ID)
-5. Qeury all fields for employees whose name started with `J` (ordered by age)
+5. Query all fields for employees whose name started with `J` (ordered by age)
 6. Query the names of all publishers, if one publisher has more than two books in the database, output the name of the publisher only once (ordered by name, ascii order)
-7. Query the id of all boos that is borrowed after `2016-10-31`, also the IDs should be distinct (ordered by id)
-8. Query for each employee who has borrowed book more than once, output the `id`, `name`, and number of borrow record (name the field `num`), ordered by `num` in descending order. This one is kind of challenging, the TA's solution uses JOIN, GROUP BY, HAVING and ORDER BY, check them out if you don't know what does these key words mean for MySQL.
+7. Query the id of all books that is borrowed after `2016-10-31`, also the IDs should be distinct (ordered by id)
+8. Query for each employee who has borrowed book more than once, output the `id`, `name`, and number of borrow record (name the field `num`), ordered by `num` in descending order. This one is kind of challenging, the TA's solution uses JOIN, GROUP BY, HAVING and ORDER BY, check them out if you don't know what these key words mean for MySQL.
 
 ## Submit Your Solution
 
