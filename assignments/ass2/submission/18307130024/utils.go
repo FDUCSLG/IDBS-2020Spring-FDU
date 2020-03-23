@@ -90,11 +90,11 @@ func GetScoreSQL() string {
 	SQL = `insert into score
 select *
 from (select A.submitter, A.item, 1 as score, count(A.item) as vote
-      from ass1_result_evaluated_by_18307130024.comparison_result as A
+      from comparison_result as A
       where A.is_equal = 1
       group by A.submitter, A.item
       having vote >= all (select count(cr.item) as vote
-                          from ass1_result_evaluated_by_18307130024.comparison_result as cr
+                          from comparison_result as cr
                           where cr.is_equal = 1
                             and cr.item = A.item
                           group by cr.submitter, cr.item
@@ -102,11 +102,11 @@ from (select A.submitter, A.item, 1 as score, count(A.item) as vote
       order by A.submitter, A.item) as X
 union
     (select A.submitter, A.item, 0 as score, count(A.item) as vote
-    from ass1_result_evaluated_by_18307130024.comparison_result as A
+    from comparison_result as A
     where A.is_equal = 1
     group by A.submitter, A.item
     having vote < some (select count(cr.item) as vote
-                        from ass1_result_evaluated_by_18307130024.comparison_result as cr
+                        from comparison_result as cr
                         where cr.is_equal = 1
                           and cr.item = A.item
                         group by cr.submitter, cr.item
