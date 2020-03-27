@@ -1,3 +1,3 @@
 SELECT *
-FROM EMPLOYEE
-WHERE NAME='Jones';
+FROM employee
+WHERE name='Jones';
