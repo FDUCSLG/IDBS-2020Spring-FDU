@@ -18,7 +18,9 @@ This course is an introductory course to database systems. In this course, you w
 |Week No.|Date|Content|Additional Materials|
 |--------|----|-------|-------------------|
 |3|2020-03-13|<a href="https://zfhu.ac.cn/IDBS-Spring20-Fudan/assignment1/readme/" style="color: blue; text-decoration: underline ">Assignment 1 Released</p>||
-|4|2020-03-20|<a style="color: red">Assignment 1 Due</a>||
+|4|2020-03-20|<a style="color: red">Assignment 1 Due</a> </br> <a href="https://zfhu.ac.cn/IDBS-Spring20-Fudan/assignment2/readme/" style="color: blue; text-decoration: underline ">Assignment 2 Released</p>||
+|5|2020-03-27|||
+|6|2020-04-03|<a style="color: red">Assignment 2 Due</a>||
 
 ## Assignment Guidance
 

@@ -72,3 +72,5 @@ nav:
   - Welcome: index.md
   - Assignment 1:
     - Instruction: assignment1/readme.md
+  - Assignment 2:
+    - Instruction: assignment2/readme.md
