@@ -7,6 +7,7 @@ import (
 	// YOUR CODE BEGIN remove the follow packages if you don't need them
 	"sync"
 	"reflect"
+	"strings"
 	// YOUR CODE END
 
 	_ "github.com/go-sql-driver/mysql"
@@ -78,12 +79,65 @@ func ConcurrentCompareAndInsert(subs map[string]*Submission) {
 				}
 				wg.Done()
 			}()
-			
 		}
 	}
 	wg.Wait()
 
 	// YOUR CODE END
+}
+
+// CompareAndBatchedInsert is similar with ConcurrentCompareAndInsert, but it is even faster despite not being concurrent!
+func CompareAndBatchedInsert(subs map[string]*Submission) {
+	start := time.Now()
+	defer func() {
+		db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(127.0.0.1:3306)/ass1_result_evaluated_by_%s", User, Password, EvaluatorID))
+		if err != nil {
+			panic(nil)
+		}
+		rows, err := db.Query("SELECT COUNT(*) FROM comparison_result")
+		if err != nil {
+			panic(err)
+		}
+		rows.Next()
+		var cnt int
+		err = rows.Scan(&cnt)
+		if err != nil {
+			panic(err)
+		}
+		if cnt == 0 {
+			panic("CompareAndBatchedInsert Not Implemented")
+		}
+		fmt.Println("CompareAndBatchedInsert takes ", time.Since(start))
+	}()
+
+	valueStrings := make([]string, 0, len(subs)*len(subs))
+	valueArgs := make([]interface{}, 0, len(valueStrings)*4)
+
+	for submitter, sub := range subs {
+		for comparer, sub2 := range subs {
+			for i := 0; i < NumSQL; i++ {
+				var equal int
+				if reflect.DeepEqual(sub.sqlResults[i], sub2.sqlResults[i]) {
+					equal = 1
+				} else {
+					equal = 0
+				}
+				valueStrings = append(valueStrings, "(?, ?, ?, ?)")
+				valueArgs = append(valueArgs, submitter, comparer, i+1, equal)
+			}
+		}
+	}
+
+	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(127.0.0.1:3306)/ass1_result_evaluated_by_%s", User, Password, EvaluatorID))
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	s := fmt.Sprintf("INSERT INTO comparison_result VALUES %s", strings.Join(valueStrings, ","))
+	_, err = db.Exec(s, valueArgs...)
+	if err != nil {
+		panic(err)
+	}
 }
 
 // GetScoreSQL returns a string which contains only ONE SQL to be executed, which collects the data in table
