@@ -17,7 +17,7 @@ var (
 	EvaluatorID   = "18300200015" // your student id, e.g. 18307130177
 	SubmissionDir = "../../../ass1/submission/" // the relative path the the submission directory of assignment 1, it should be "../../../ass1/submission/"
 	User          = "root" // the user name to connect the database, e.g. root
-	Password      = "v8k2s6d5n1c3g@"//omit // the password for the user name, e.g. xxx
+	Password      = ""//omit // the password for the user name, e.g. xxx
 	// YOUR CODE END
 )
 
