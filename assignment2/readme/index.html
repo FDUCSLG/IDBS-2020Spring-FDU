@@ -706,7 +706,8 @@ records in the database. This is too slow! The QPS (query per second) is about 7
 <p>With the help of goroutine, it can be easily made concurrent, so please make it concurrent and improve the QPS in <code>ConcurrentCompareAndInsert</code>. As a reference, it takes less than 4 seconds with your TA's simple concurrent version, a speed up of 15x.</p>
 <p>You could also do batch insert, which could be even faster, but you won't be able to play with concurrency. If you are interested, you could write a <code>CompareAndBatchedInsert</code> function in <code>utils.go</code> and test how faster it could be, however this part is unrated.</p>
 <p>Also as a reference, your kind TA provided you a concurrent <code>createSubmissions</code> in <code>main.go</code>, take a look if you don't know how to start.</p>
-<p>Also as a kind note, <code>sql.DB</code> is not thread-safe, you need multiple <code>sql.DB</code> if you want concurrent access of the database, and figuring out (by search it online) what is closure, and how to pass variable to a closure might be helpful.</p>
+<p><del>Also as a kind note, <code>sql.DB</code> is not thread-safe, you need multiple <code>sql.DB</code> if you want concurrent access of the database, and figuring out (by search it online) what is closure, and how to pass variable to a closure might be helpful.</del></p>
+<p><code>sql.DB</code> is thread-safe<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>, if you had trouble with too many connections error, see <a href="https://jmoiron.github.io/sqlx/#connectionPool">here</a>. Thanks <a href="https://github.com/TwistsOfFate">TwistsOfFate</a> for pointing this out.</p>
 <p>Run</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>$ go run main.go utils.go
 </code></pre></div>
@@ -1026,6 +1027,9 @@ repository</p>
 </li>
 <li id="fn:3">
 <p>https://www.bilibili.com/video/av29079011/&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>https://github.com/ichn-hu/IDBS-Spring20-Fudan/issues/45#issuecomment-606323923&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
