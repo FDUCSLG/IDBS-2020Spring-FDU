@@ -17,8 +17,8 @@ var (
 	// YOUR CODE BELOW
 	EvaluatorID   = "18307130104" // your student id, e.g. 18307130177
 	SubmissionDir = "../../../ass1/submission/" // the relative path the the submission directory of assignment 1, it should be "../../../ass1/submission/"
-	User          = "unicornt" // the user name to connect the database, e.g. root
-	Password      = "twinblade" // the password for the user name, e.g. xxx
+	User          = "" // the user name to connect the database, e.g. root
+	Password      = "" // the password for the user name, e.g. xxx
 	// YOUR CODE END
 )
 
@@ -121,20 +121,24 @@ func GetScoreSQL() string {
 	var SQL string
 	SQL = "SELECT 1" // ignore this line, it just makes the returned SQL a valid SQL if you haven't written yours.
 	// YOUR CODE BEGIN
-	SQL = "INSERT INTO score (submitter, item, score, vote) " +
-		  "(SELECT submitter, item, 1 AS score, vote " +
-		   "FROM (SELECT submitter, item, COUNT(*) AS vote FROM comparison_result WHERE is_equal = 1 GROUP BY submitter, item) AS X " +
-		   "WHERE vote >= ALL(SELECT COUNT(*) " +
-		   					 "FROM comparison_result AS Y " +
-		   					 "WHERE Y.is_equal = 1 AND X.item = Y.item " +
-		   					 "GROUP BY submitter)) " +
-		  "UNION " +
-		  "(SELECT submitter, item, 0 AS score, vote " +
-		   "FROM (SELECT submitter, item, COUNT(*) AS vote FROM comparison_result WHERE is_equal = 1 GROUP BY submitter, item) AS X " +
-		   "WHERE vote < SOME(SELECT COUNT(*) " +
-		   					 "FROM comparison_result AS Y " +
-		   					 "WHERE Y.is_equal = 1 AND X.item = Y.item " +
-		   					 "GROUP BY submitter)) " 
+	SQL = `INSERT INTO score (submitter, item, score, vote) 
+			With equal_comp(submitter, item, vote) AS 
+		   (SELECT submitter, item, COUNT(DISTINCT comparer) AS vote 
+		    FROM comparison_result 
+		    WHERE  is_equal = 1 
+		    GROUP BY submitter, item)
+
+		  	(SELECT submitter, item, 1 AS score, vote 		
+		  	 FROM equal_comp AS X
+		   	 WHERE vote >= ALL(SELECT Y.vote
+		   					   FROM equal_comp AS Y 
+		   					   WHERE Y.item = X.item))
+		  	UNION
+		  	(SELECT submitter, item, 0 AS score, vote 
+		  	 FROM equal_comp AS X
+		   	 WHERE vote < SOME(SELECT Y.vote
+		   					   FROM equal_comp AS Y
+		   					   WHERE Y.item = X.item)) `
 	// YOUR CODE END
 	return SQL
 }
