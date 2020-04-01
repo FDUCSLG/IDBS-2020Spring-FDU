@@ -41,7 +41,7 @@ Your local repository only have your own code, in order to get the content for t
 from GitHub. Use the following commands:
 
 ```bash
-$ git remote add upstream git://github.com/ichn-hu/IDBS-Spring20-Fudan.git # add your TA's repository to the romote
+$ git remote add upstream xxx # add your TA's repository to the romote
 $ git fetch upstream # this command fetches the update in your TA's repository, it would take a while
 $ git merge upstream/master # merge the updates into your master, you can also do `git rebase upstream/master` if you used another branch other than master previously for assignment 1
 ```
