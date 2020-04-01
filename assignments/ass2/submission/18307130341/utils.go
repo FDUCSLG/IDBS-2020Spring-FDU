@@ -90,7 +90,7 @@ func GetScoreSQL() string {
 	"WHERE votetable.item=maxtable.item";
 	// YOUR CODE END
 	return SQL
-}
+} 
 
 func GetScore(db *sql.DB, subs map[string]*Submission) {
 	// YOUR CODE BEGIN
