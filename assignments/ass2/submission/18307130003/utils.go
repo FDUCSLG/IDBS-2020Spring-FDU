@@ -96,10 +96,37 @@ func ConcurrentCompareAndInsert(subs map[string]*Submission) {
 // `comparision_result` and inserts the score of each submitter on each query into table `score`
 func GetScoreSQL() string {
 	var SQL string
-	SQL = "SELECT 1" // ignore this line, it just makes the returned SQL a valid SQL if you haven't written yours.
-	// YOUR CODE BEGIN
-
-	// YOUR CODE END
+	SQL = `
+INSERT INTO
+    score
+WITH submitter_votes AS (
+    SELECT
+        submitter,
+        item,
+        SUM(is_equal) AS vote
+    FROM
+        comparison_result
+    GROUP BY
+        submitter,
+        item
+),
+grading_standard AS (
+    SELECT
+        item,
+        MAX(vote) AS max_vote
+    FROM
+        submitter_votes
+    GROUP BY
+        item
+)
+SELECT
+    submitter,
+    item,
+    IF(vote = max_vote, 1, 0) AS score,
+    vote
+FROM
+    submitter_votes
+    JOIN grading_standard USING(item);`
 	return SQL
 }
 
@@ -109,6 +136,7 @@ func GetScore(db *sql.DB, subs map[string]*Submission) {
 	if err != nil {
 		panic(err)
 	}
+	defer db.Close()
 	for rows.Next() {
 		var sid string
 		var qid, score int
