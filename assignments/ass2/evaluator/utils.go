@@ -14,10 +14,10 @@ import (
 
 var (
 	// YOUR CODE BELOW
-	EvaluatorID   = "18307130297" // your student id, e.g. 18307130177
-	SubmissionDir = "../../../ass1/submission/" // the relative path the the submission directory of assignment 1, it should be "../../../ass1/submission/"
-	User          = "root" // the user name to connect the database, e.g. root
-	Password      = "123456" // the password for the user name, e.g. xxx
+	EvaluatorID   = "" // your student id, e.g. 18307130177
+	SubmissionDir = "" // the relative path the the submission directory of assignment 1, it should be "../../../ass1/submission/"
+	User          = "" // the user name to connect the database, e.g. root
+	Password      = "" // the password for the user name, e.g. xxx
 	// YOUR CODE END
 )
 
