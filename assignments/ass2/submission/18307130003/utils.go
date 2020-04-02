@@ -90,7 +90,6 @@ func ConcurrentCompareAndInsert(subs map[string]*Submission) {
 		}
 	}
 	wg.Wait()
-	// YOUR CODE END
 }
 
 // GetScoreSQL returns a string which contains only ONE SQL to be executed, which collects the data in table
@@ -106,7 +105,17 @@ func GetScoreSQL() string {
 
 // GetScore reads your score from table `score`
 func GetScore(db *sql.DB, subs map[string]*Submission) {
-	// YOUR CODE BEGIN
-
-	// YOUR CODE END
+	rows, err := db.Query("SELECT submitter, item, score FROM score")
+	if err != nil {
+		panic(err)
+	}
+	for rows.Next() {
+		var sid string
+		var qid, score int
+		err := rows.Scan(&sid, &qid, &score)
+		if err != nil {
+			panic(err)
+		}
+		subs[sid].score[qid] = score
+	}
 }
