@@ -1,4 +1,5 @@
 package main
+
 import (
 	"fmt"
 	"time"
@@ -14,7 +15,7 @@ import (
 
 var (
 	// YOUR CODE BELOW
-	EvaluatorID   = "18300200015" // your student id, e.g. 18307130177
+	EvaluatorID   = "18300750006" // your student id, e.g. 18307130177
 	SubmissionDir = "../../../ass1/submission/" // the relative path the the submission directory of assignment 1, it should be "../../../ass1/submission/"
 	User          = "root" // the user name to connect the database, e.g. root
 	Password      = ""//omit // the password for the user name, e.g. xxx
@@ -45,18 +46,22 @@ func ConcurrentCompareAndInsert(subs map[string]*Submission) {
 		fmt.Println("ConcurrentCompareAndInsert takes ", time.Since(start))
 	}()
 	// YOUR CODE BEGIN
-		db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(127.0.0.1:3306)/ass1_result_evaluated_by_%s", User, Password, EvaluatorID))
+	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(127.0.0.1:3306)/ass1_result_evaluated_by_%s", User, Password, EvaluatorID))
+	
 	if err != nil {
-			fmt.Println("error1")
-			panic(nil)
-		}
-	wg := sync.WaitGroup{}
+		panic(err)
+	}
+	var wg sync.WaitGroup
+	wg.Add(len(subs))
+	
 	for submitter, sub := range subs {
-		for comparer, sub2 := range subs {
-			for i := 0; i < NumSQL; i++ {
-				wg.Add(1)
-				go func(i int,submitter string,comparer string,sub *Submission,sub2 *Submission){
+		//var lock sync.Mutex	
+		go func(submitter string , sub *Submission){
+			for comparer, sub2 := range subs {
+				for i := 0; i < NumSQL; i++ {
+								
 				var equal int
+				
 				if reflect.DeepEqual(sub.sqlResults[i], sub2.sqlResults[i]) {
 					equal = 1
 				} else {
@@ -64,16 +69,26 @@ func ConcurrentCompareAndInsert(subs map[string]*Submission) {
 				}
 				s := fmt.Sprintf("INSERT INTO comparison_result VALUES ('%s', '%s', %d, %d)", submitter, comparer, i+1, equal)
 				_, err := db.Exec(s)
+				
 				if err != nil {
 					fmt.Println(s)
 					panic(err)
 				}
-				wg.Done()
-				}(i,submitter,comparer,sub,sub2)
+		
+				//wg.Add(1)
+				//go func(p int){		
+				//lock.Lock()
+				//defer lock.Unlock()	
+				//wg.Done()
+				//}(i)
+				//wg.Wait()
+				}
 			}
-			wg.Wait()	
-		}
-}
+			wg.Done()
+		}(submitter,sub)
+		
+	}
+	wg.Wait()
 	
 	
 	// YOUR CODE END
@@ -85,22 +100,16 @@ func GetScoreSQL() string {
 	var SQL string
 	SQL = "SELECT 1" // ignore this line, it just makes the returned SQL a valid SQL if you haven't written yours.
 	// YOUR CODE BEGIN
-		SQL=`INSERT INTO score(submitter,item,score,vote) 
-(SELECT result.submitter,result.item,1 AS score,vote
-	FROM (SELECT submitter,item,count(*)AS vote
-	FROM comparison_result
-	WHERE is_equal = 1
-	GROUP BY submitter, item) AS result
-    WHERE vote >= ALL(SELECT count(*) FROM comparison_result AS other 
-					WHERE is_equal=1 AND result.item=other.item GROUP BY other.submitter,other.item))
-UNION
-(SELECT result2.submitter,result2.item,0 AS score,vote
-	FROM (SELECT submitter,item,count(*)AS vote
-	FROM comparison_result
-	WHERE is_equal = 1
-	GROUP BY submitter, item) AS result2
-    WHERE vote < some(SELECT count(*) FROM comparison_result AS other2 
-					WHERE is_equal=1 AND result2.item=other2.item GROUP BY other2.submitter,other2.item));`
+	SQL = "INSERT INTO score(submitter,item,score,vote)" +
+		"(SELECT A.submitter,A.item,1 AS score,vote FROM " +
+		"(SELECT submitter,item,SUM(is_equal) AS vote FROM comparison_result GROUP BY submitter,item) as A " +
+		"WHERE vote >= all(select sum(B.is_equal) AS vote FROM comparison_result as B " +
+		"WHERE A.item = B.item GROUP BY B.submitter,B.item) ORDER BY A.submitter,A.item )" +
+		" union " +
+		"(SELECT C.submitter,C.item,0 AS score,vote FROM " +
+		"(SELECT submitter,item,SUM(is_equal) AS vote FROM comparison_result GROUP BY submitter,item) as C " +
+		"WHERE vote < some(select sum(D.is_equal) AS vote FROM comparison_result as D " +
+		"WHERE C.item = D.item GROUP BY D.submitter,D.item) ORDER BY C.submitter,C.item) "
 
 	// YOUR CODE END
 	return SQL
@@ -108,18 +117,20 @@ UNION
 
 func GetScore(db *sql.DB, subs map[string]*Submission) {
 	// YOUR CODE BEGIN
-		rows,err:=db.Query("SELECT submitter,item,score from score")
-	if err != nil {
-        fmt.Println(err)
-	}
-	var id string
-	var item,score int
-	for rows.Next(){
-		rows.Scan(&id,&item,&score)
-		subs[id].score[item]=score
-	}
+	var score int
 
+	for _,sub := range subs {
+
+		for i := 1; i < 9; i++ {
+
+			errTables := db.QueryRow("SELECT score FROM score WHERE submitter = ? AND item = ?", sub.submitter,i).Scan(&score)
+			sub.score[i] = score
+			if errTables != nil {
+			}
+
+
+		}
+	}
 
 	// YOUR CODE END
 }
-
