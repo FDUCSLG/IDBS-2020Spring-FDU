@@ -25,7 +25,7 @@ var (
 func ConcurrentCompareAndInsert(subs map[string]*Submission) {
 	start := time.Now()
 	defer func() {
-		db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(localhost:3306)/ass1_result_evaluated_by_%s", User, Password, EvaluatorID))
+		db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(127.0.0.1:3306)/ass1_result_evaluated_by_%s", User, Password, EvaluatorID))
 		if err != nil {
 			panic(nil)
 		}
@@ -46,7 +46,7 @@ func ConcurrentCompareAndInsert(subs map[string]*Submission) {
 	}()
 
 	// Connect to the database
-	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(localhost:3306)/ass1_result_evaluated_by_%s", User, Password, EvaluatorID))
+	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(127.0.0.1:3306)/ass1_result_evaluated_by_%s", User, Password, EvaluatorID))
 	if err != nil {
 		panic(err)
 	}
