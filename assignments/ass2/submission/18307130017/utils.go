@@ -46,57 +46,33 @@ func ConcurrentCompareAndInsert(subs map[string]*Submission) {
 		fmt.Println("ConcurrentCompareAndInsert takes ", time.Since(start))
 	}()
 	// YOUR CODE BEGIN
-	detecterr:=func(err error){
-		if err != nil { 
-			panic(err) 
-		}
+	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(127.0.0.1:3306)/ass1_result_evaluated_by_%s", User, Password, EvaluatorID))
+	if err != nil {
+		panic(err)
 	}
-	type comp_result struct{
-		submitter,comparer string
-		id int
-		equal int
-	}
-	ch:=make(chan comp_result,32)
-	wg := sync.WaitGroup{}
-	max:=0
-	for range subs{
-		max++
-	}
-	db,err:= sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(127.0.0.1:3306)/ass1_result_evaluated_by_%s", User, Password, EvaluatorID))
-	detecterr(err)
-	for i:=1;i<=max;i++{
-		wg.Add(1)
-		go func(){
-			defer wg.Done()
-			tx,err:=db.Begin()
-			detecterr(err)
-			defer func(){
-				err:=tx.Commit()
-				detecterr(err)
-			}()
-			stmt,err:=tx.Prepare("INSERT INTO comparison_result VALUES (?,?,?,?)")
-			defer stmt.Close()
-			detecterr(err)
-			for result:=range ch{
-				_,err:=stmt.Exec(result.submitter,result.comparer,result.id,result.equal)
-				detecterr(err)
-			}
-		}()
-	}
+	var wg sync.WaitGroup
 	for submitter, sub := range subs {
-		for comparer, sub2 := range subs {
-			for i := 0; i < NumSQL; i++ {
-				var equal int
-				if reflect.DeepEqual(sub.sqlResults[i], sub2.sqlResults[i]) {
-					equal = 1
-				} else {
-					equal = 0
+		wg.Add(1)
+		go func(submitter string,sub *Submission){
+			for comparer, sub2 := range subs {
+				for i := 0; i < NumSQL; i++ {
+					var equal int
+					if reflect.DeepEqual(sub.sqlResults[i], sub2.sqlResults[i]) {
+						equal = 1
+					} else {
+						equal = 0
+					}
+					s := fmt.Sprintf("INSERT INTO comparison_result VALUES ('%s', '%s', %d, %d)", submitter, comparer, i+1, equal)
+					_, err := db.Exec(s)
+					if err != nil {
+						fmt.Println(s)
+						panic(err)
+					}
 				}
-				ch<-comp_result{submitter,comparer,i+1,equal}
 			}
-		}
+			wg.Done()
+		}(submitter,sub)
 	}
-	close(ch)
 	wg.Wait()
 	// YOUR CODE END
 }
