@@ -41,7 +41,7 @@ Your local repository only have your own code, in order to get the content for t
 from GitHub. Use the following commands:
 
 ```bash
-$ git remote add upstream xxx # add your TA's repository to the romote
+$ git remote add upstream https://github.com/ichn-hu/IDBS-Spring20-Fudan.git # add your TA's repository to the romote
 $ git fetch upstream # this command fetches the update in your TA's repository, it would take a while
 $ git merge upstream/master # merge the updates into your master, you can also do `git rebase upstream/master` if you used another branch other than master previously for assignment 1
 ```
@@ -125,7 +125,11 @@ You could also do batch insert, which could be even faster, but you won't be abl
 
 Also as a reference, your kind TA provided you a concurrent `createSubmissions` in `main.go`, take a look if you don't know how to start.
 
-Also as a kind note, `sql.DB` is not thread-safe, you need multiple `sql.DB` if you want concurrent access of the database, and figuring out (by search it online) what is closure, and how to pass variable to a closure might be helpful.
+~~Also as a kind note, `sql.DB` is not thread-safe, you need multiple `sql.DB` if you want concurrent access of the database, and figuring out (by search it online) what is closure, and how to pass variable to a closure might be helpful.~~
+
+`sql.DB` is thread-safe[^4], if you had trouble with too many connections error, see [here](https://jmoiron.github.io/sqlx/#connectionPool). Thanks [TwistsOfFate](https://github.com/TwistsOfFate) for pointing this out.
+
+[^4]: https://github.com/ichn-hu/IDBS-Spring20-Fudan/issues/45#issuecomment-606323923
 
 Run
 
