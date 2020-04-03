@@ -50,7 +50,7 @@ func ConcurrentCompareAndInsert(subs map[string]*Submission) {
 	if err != nil {
 		panic(err)
 	}
-	var wg sync.WaitGroup
+	wg:=sync.WaitGroup{}
 	for submitter, sub := range subs {
 		wg.Add(1)
 		go func(submitter string,sub *Submission){
