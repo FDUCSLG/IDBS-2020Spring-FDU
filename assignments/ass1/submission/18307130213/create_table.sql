@@ -9,7 +9,7 @@ CREATE TABLE book (	id INT NOT NULL,
 					name VARCHAR(32) NOT NULL,
 					author VARCHAR(32) NOT NULL,
 					publisher VARCHAR(32) NOT NULL,
-					PRIMARY KEY(ID));
+					PRIMARY KEY(id));
 
 CREATE TABLE record (	book_id INT NOT NULL,
 						employee_id INT NOT NULL,
