@@ -1,3 +1,3 @@
 SELECT *
-FROM EMPLOYEE
-WHERE NAME LIKE 'J%';
+FROM employee
+WHERE name LIKE 'J%';
