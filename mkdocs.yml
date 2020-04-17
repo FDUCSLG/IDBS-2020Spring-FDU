@@ -26,10 +26,10 @@ theme:
   font:
     text: 'Roboto'
     code: 'Roboto Mono'
-  logo:
-    icon: material/code
+  icon:
+    logo: material/code
   feature:
-    tabs: true
+    - tabs: true
 
 # # Customization
 extra:
