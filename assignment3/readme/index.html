@@ -1,3 +1,4 @@
+<!-- Fix MathJax rendering on iOS Safari due to rendering long numbers as phone numbers. -->
 
 
 
@@ -5,11 +6,14 @@
 <html lang="en" class="no-js">
   <head>
     
+    
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
         <meta name="description" content="Course website for introduction to database systems at Fudan University">
       
+      
+        <link rel="canonical" href="https://zfhu.ac.cn/IDBS-Spring20-Fudan/assignment3/readme/">
       
       
         <meta name="author" content="Zhifeng Hu">
@@ -17,15 +21,17 @@
       <link rel="shortcut icon" href="/static/assets/fudan.svg">
       <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.0">
     
+    <meta name="format-detection" content="telephone=no">
+
     
       
-        <title>IDBS-Spring20-Fudan</title>
+        <title>Instruction - IDBS-Spring20-Fudan</title>
       
     
     
-      <link rel="stylesheet" href="/IDBS-Spring20-Fudan/assets/stylesheets/main.89dc9fe3.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.89dc9fe3.min.css">
       
-        <link rel="stylesheet" href="/IDBS-Spring20-Fudan/assets/stylesheets/palette.ecd4686e.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecd4686e.min.css">
       
       
         
@@ -43,7 +49,7 @@
     
     
     
-      <link rel="stylesheet" href="/IDBS-Spring20-Fudan/static/css/katex.css">
+      <link rel="stylesheet" href="../../static/css/katex.css">
     
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css">
     
@@ -67,6 +73,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#assignment-3-library" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -92,7 +103,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              
+              Instruction
             
           </span>
         </div>
@@ -192,7 +203,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/IDBS-Spring20-Fudan/." title="Welcome" class="md-nav__link">
+    <a href="../.." title="Welcome" class="md-nav__link">
       Welcome
     </a>
   </li>
@@ -229,7 +240,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/IDBS-Spring20-Fudan/assignment1/readme/" title="Instruction" class="md-nav__link">
+    <a href="../../assignment1/readme/" title="Instruction" class="md-nav__link">
       Instruction
     </a>
   </li>
@@ -271,7 +282,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/IDBS-Spring20-Fudan/assignment2/readme/" title="Instruction" class="md-nav__link">
+    <a href="../../assignment2/readme/" title="Instruction" class="md-nav__link">
       Instruction
     </a>
   </li>
@@ -286,10 +297,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     
     <label class="md-nav__link" for="nav-4">
       Assignment 3
@@ -311,11 +324,67 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="/IDBS-Spring20-Fudan/assignment3/readme/" title="Instruction" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Instruction
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Instruction" class="md-nav__link md-nav__link--active">
       Instruction
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#design" class="md-nav__link">
+    Design
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirement" class="md-nav__link">
+    Requirement
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submission" class="md-nav__link">
+    Submission
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -331,17 +400,112 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#design" class="md-nav__link">
+    Design
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirement" class="md-nav__link">
+    Requirement
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submission" class="md-nav__link">
+    Submission
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
-
-              
                 
+                  <a href="https://github.com/ichn-hu/IDBS-Spring20-Fudan/edit/master/content/assignment3/readme.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="assignment-3-library">Assignment 3, Library<a class="headerlink" href="#assignment-3-library" title="Permanent link">&para;</a></h1>
+<p>In this assignment, you are going to use what you have learned about MySQL and Go to implement a library management system.</p>
+<p>As a sophomore of <em>Fairy Union of Defense and Attack Nebula</em> University (FUDAN University) majoring in Computer Science, you are assigned to help build the library management system for the University.</p>
+<p>The goal of this assignment to let you know how to design an information management system, and you are given a maximum amount of freedom to design and implement the system, as long as you make use of Go.</p>
+<h2 id="design">Design<a class="headerlink" href="#design" title="Permanent link">&para;</a></h2>
+<p>As you are familiar with the library system in Fudan, the requirements are similar to the current library system:</p>
+<ul>
+<li>add books to the library by the administrator's account</li>
+<li>remove a book from the library with explanation (e.g. book is lost)</li>
+<li>add student account by the administrator's account so that the student could borrow books from the library</li>
+<li>query books by title, author or ISBN</li>
+<li>borrow a book from the library with a student account</li>
+<li>query the borrow history of a student account</li>
+<li>query the books a student has borrowed and not returned yet</li>
+<li>check the deadline of returning a borrowed book</li>
+<li>extend the deadline of returning a book, at most 3 times (i.e. refuse to extend if the deadline has been extended for 3 times)</li>
+<li>check if a student has any overdue books that needs to be returned</li>
+<li>return a book to the library by a student account (make sure the student has borrowed the book)</li>
+<li>suspend student's account if the student has more than 3 overdue books (not able to borrow new books unless she has returned books so that she has overdue books less or equal to 3)</li>
+</ul>
+<p>And you could add more functionalities to the system as you like.</p>
+<h2 id="requirement">Requirement<a class="headerlink" href="#requirement" title="Permanent link">&para;</a></h2>
+<p>You should implement the system using Go and mysql. You should abstract the functionalities as Go functions, such as</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// AddBook adds a book to the library</span>
+<span class="kd">func</span> <span class="nx">AddBook</span><span class="p">(</span><span class="nx">book_title</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">publisher</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+  <span class="c1">// query mysql and do the work</span>
+<span class="p">}</span>
+</code></pre></div>
 
-
+<p>You should document your code with comments and also write tests to prove your implementation for the functionalities is correct.</p>
+<p>Take a look at <a href="https://blog.alexellis.io/golang-writing-unit-tests/">here</a>, <a href="https://gobyexample.com/testing">here</a> or <a href="https://labix.org/gocheck">here</a> for how to write tests for go programs.</p>
+<p>The simple boilerplate provided might be helpful as a starter, but your are not restricted to it.</p>
+<p>Interactions to the system is not required (your tests is already a way of interaction), however it would be a plus if you implement a simple command line interface to interact with the system.</p>
+<h2 id="submission">Submission<a class="headerlink" href="#submission" title="Permanent link">&para;</a></h2>
+<p>You should submit a PDF file as the report explaining how you implement your system and how your implementation fulfills the functionalities, and the link to your project on GitHub (create a repository under your own account, and put your project there), and instructions on how to get your system running.</p>
+<p>Your report can be in either Chinese or English, and there is no difference in terms of marking, as long as you can make yourself clear.</p>
+                
               
+              
+<script src="https://utteranc.es/client.js"
+        repo="ichn-hu/IDBS-Spring20-Fudan"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
             </article>
           </div>
         </div>
@@ -349,6 +513,27 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../assignment2/readme/" title="Instruction" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Instruction
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -380,20 +565,20 @@
       
     </div>
     
-      <script src="/IDBS-Spring20-Fudan/assets/javascripts/vendor.36cbf620.min.js"></script>
-      <script src="/IDBS-Spring20-Fudan/assets/javascripts/bundle.00c583dd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/vendor.36cbf620.min.js"></script>
+      <script src="../../assets/javascripts/bundle.00c583dd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
-          base: "/IDBS-Spring20-Fudan",
+          base: "../..",
           features: [],
           search: Object.assign({
-            worker: "/IDBS-Spring20-Fudan/assets/javascripts/worker/search.7f7c8775.min.js"
+            worker: "../../assets/javascripts/worker/search.7f7c8775.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
       
-        <script src="/IDBS-Spring20-Fudan/static/js/katex.js"></script>
+        <script src="../../static/js/katex.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"></script>
       
