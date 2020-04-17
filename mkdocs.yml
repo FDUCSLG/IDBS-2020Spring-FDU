@@ -19,7 +19,7 @@ theme:
   name: 'material'
   language: 'en'
   custom_dir: 'custom/'
-  favicon: 'static/assets/fudan.svg'
+  favicon: '/static/assets/fudan.svg'
   palette:
     primary: 'Black'
     accent: 'Blue'
@@ -27,7 +27,7 @@ theme:
     text: 'Roboto'
     code: 'Roboto Mono'
   logo:
-    icon: 'code'
+    icon: 'material/code'
   feature:
     tabs: true
 
