@@ -40,7 +40,7 @@ You should document your code with comments and also write tests to prove your i
 
 Take a look at [here](https://blog.alexellis.io/golang-writing-unit-tests/), [here](https://gobyexample.com/testing) or [here](https://labix.org/gocheck) for how to write tests for go programs.
 
-The simple boilerplate provided might be helpful as a starter, but your are not restricted to it.
+The [simple boilerplate](https://github.com/ichn-hu/IDBS-Spring20-Fudan/tree/master/assignments/ass3/boilerplate) provided might be helpful as a starter, but your are not restricted to it.
 
 Interactions to the system is not required (your tests is already a way of interaction), however it would be a plus if you implement a simple command line interface to interact with the system.
 
