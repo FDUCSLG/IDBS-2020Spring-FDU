@@ -46,7 +46,7 @@ Interactions to the system is not required (your tests is already a way of inter
 
 ## Submission
 
-You should submit a PDF file as the report explaining how you implement your system and how your implementation fulfills the functionalities, and the link to your project on GitHub (create a repository under your own account, and put your project there), and instructions on how to get your system running.
+You should submit a PDF file as the report explaining how you implement your system and how your implementation fulfills the functionalities. Also include the link to a project on GitHub (create a repository under your own account, and put your project there), and instructions on how to get your system running.
 
 Your report can be in either Chinese or English, and there is no difference in terms of marking, as long as you can make yourself clear.
 
