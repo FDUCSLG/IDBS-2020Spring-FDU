@@ -26,16 +26,16 @@ theme:
   font:
     text: 'Roboto'
     code: 'Roboto Mono'
+  icon:
+    logo: material/cloud
   feature:
     - tabs
 
 # # Customization
 extra:
   social:
-    - type: 'github'
+    - icon: fontawesome/brands/github-alt
       link: 'https://github.com/ichn-hu'
-    - type: 'quote-left'
-      link: 'https://github.com/ichn-hu/IDBS-Spring20-Fudan'
 
 extra_css:
   - 'static/css/katex.css'
