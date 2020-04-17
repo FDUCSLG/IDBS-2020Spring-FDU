@@ -19,7 +19,7 @@ theme:
   name: 'material'
   language: 'en'
   custom_dir: 'custom/'
-  favicon: '/static/assets/fudan.svg'
+  favicon: 'static/assets/fudan.svg'
   palette:
     primary: 'Black'
     accent: 'Blue'
