@@ -26,18 +26,16 @@ theme:
   font:
     text: 'Roboto'
     code: 'Roboto Mono'
-  logo:
-    icon: 'code'
+  icon:
+    logo: material/cloud
   feature:
-    tabs: true
+    - tabs
 
 # # Customization
 extra:
   social:
-    - type: 'github'
+    - icon: fontawesome/brands/github-alt
       link: 'https://github.com/ichn-hu'
-    - type: 'quote-left'
-      link: 'https://github.com/ichn-hu/IDBS-Spring20-Fudan'
 
 extra_css:
   - 'static/css/katex.css'
@@ -72,3 +70,7 @@ nav:
   - Welcome: index.md
   - Assignment 1:
     - Instruction: assignment1/readme.md
+  - Assignment 2:
+    - Instruction: assignment2/readme.md
+  - Assignment 3:
+    - Instruction: assignment3/readme.md
