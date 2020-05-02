@@ -1,3 +1,3 @@
-SELECT NAME
-FROM EMPLOYEE
-WHERE ID=1 OR ID=2; 
+SELECT name
+FROM employee
+WHERE id=1 OR id=2; 
