@@ -10,7 +10,7 @@ import (
 
 const (
 	User     = "root"
-	Password = "fryj5306"
+	Password = ""
 	DBName   = "ass3"
 )
 
