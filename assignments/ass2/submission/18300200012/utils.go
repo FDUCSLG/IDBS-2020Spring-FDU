@@ -16,7 +16,7 @@ import (
 var (
 	// YOUR CODE BELOW
 	EvaluatorID   = "18300200012" // your student id, e.g. 18307130177
-	SubmissionDir = "/home/l1q/git_reps/IDBS-Spring20-Fudan/assignments/ass1/submission/"
+	SubmissionDir = "/home/l1q/DB/IDBS-Spring20-Fudan/assignments/ass1/submission/"
 	User          = "root"       // the user name to connect the database, e.g. root
 	Password      = "llq0215llq" // the password for the user name, e.g. xxx
 	// YOUR CODE END
